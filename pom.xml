@@ -8,6 +8,14 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+
+    <scm>
+        <developerConnection>scm:git:ssh://git@github.com/exoreaction/xorcery-alchemy.git</developerConnection>
+        <connection>scm:git:https://github.com/exoreaction/xorcery-alchemy.git</connection>
+        <url>https://github.com/exoreaction/xorcery-alchemy</url>
+    </scm>
+
+    
     <modules>
         <module>xorcery-alchemy-bom</module>
         <module>xorcery-alchemy-parent</module>
@@ -16,4 +24,45 @@
         <module>xorcery-alchemy-cabinet</module>
         <module>xorcery-alchemy-test</module>
     </modules>
+
+
+    <distributionManagement>
+        <repository>
+            <id>quadim</id>
+            <name>Quadim Release Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/quadimrelease/</url>
+        </repository>
+        <snapshotRepository>
+            <id>quadim</id>
+            <name>Quadim Snapshot Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/quadimsnapshot/</url>
+        </snapshotRepository>
+
+    </distributionManagement>
+
+    <repositories>
+        <!-- Needed for parent -->
+        <repository>
+            <id>cantara-releases</id>
+            <name>Cantara Release Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>cantara-snapshots</id>
+            <name>Cantara Snapshot Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/snapshots/</url>
+        </repository>
+
+        <repository>
+            <id>quadim-releases</id>
+            <name>Quadim Release Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/quadimrelease/</url>
+        </repository>
+        <repository>
+            <id>quadim-snapshots</id>
+            <name>Quadim Snapshot Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/quadimsnapshot/</url>
+        </repository>
+
+    </repositories>
 </project>
