@@ -1,0 +1,14 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "testcsvsourcewithheaders"
+  source:
+    jar: csv
+    name: "readcsvfilewithheaders"
+    headers: true
+    quote: "'"
+    sourceUrl: "resource://readcsvfilewithheaders.csv"
+  transmutes:
+  - name: "logitem"
+    jar: script
+    next: |+
+      print('item:'+item);

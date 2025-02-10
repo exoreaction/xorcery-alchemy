@@ -1,0 +1,11 @@
+jars:
+  sourcejars:
+    - jar: excel
+      name: excel
+      enabled: "{{ jars.enabled }}"
+      sourceUrl: null
+  transmutejars:
+    - jar: excel
+      name: excel
+      enabled: "{{ jars.enabled }}"
+      resultUrl: null

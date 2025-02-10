@@ -1,0 +1,16 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- recipe: "testYamlSourceResult"
+  source:
+    jar: yaml
+    sourceUrl: "resource://yamlsource.yaml"
+  transmutes:
+  - jar: yaml
+    resultUrl: "file:///{{ instance.home }}/yamlresult.yaml"
+
+recipes:
+- name: "testYamlSourceResult"
+  source:
+    jar: yaml
+  transmutes:
+  - jar: yaml

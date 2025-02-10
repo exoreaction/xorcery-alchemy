@@ -1,0 +1,38 @@
+jars:
+  sourcejars:
+    - jar: concat
+      name: concat
+      enabled: "{{ jars.enabled }}"
+      sources: []
+    - jar: directory
+      name: directory
+      enabled: "{{ jars.enabled }}"
+      path: null
+      filter: "*.*"
+
+  transmutejars:
+    - jar: flatten
+      name: flatten
+      enabled: "{{ jars.enabled }}"
+
+    - jar: rename
+      name: rename
+      enabled: "{{ jars.enabled }}"
+      metadata: {}
+      data: {}
+      context: {}
+
+    - jar: retry
+      name: retry
+      enabled: "{{ jars.enabled }}"
+      # Defaults to Long.MAX_VALUE
+      maxAttempts: -1
+      minBackoff: "10S"
+      maxBackoff: "1M"
+      multiplier: 2
+      jitter: 0.5
+      # Exception names to retry on, with or without package name
+      includes: []
+      # Exception names to not retry on, with or without package name
+      excludes: []
+

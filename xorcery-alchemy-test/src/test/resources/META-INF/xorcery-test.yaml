@@ -1,0 +1,20 @@
+$schema: xorcery-test-override-schema.json
+
+defaults:
+  enabled: false
+
+jars:
+  enabled: true
+
+crucible:
+  enabled: true
+  closeWhenDone: false
+
+log4j2:
+  Configuration:
+    thresholdFilter:
+      level: debug
+    Loggers:
+      logger:
+        - name: dev.xorcery.junit
+          level: debug

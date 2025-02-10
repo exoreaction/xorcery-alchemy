@@ -1,0 +1,13 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "testcsvsource"
+  source:
+    jar: csv
+    name: "readcsvfile"
+    separator: ";"
+    sourceUrl: "resource://readcsvfile.csv"
+  transmutes:
+  - name: "logitem"
+    jar: script
+    next: |+
+      print('item:'+item);

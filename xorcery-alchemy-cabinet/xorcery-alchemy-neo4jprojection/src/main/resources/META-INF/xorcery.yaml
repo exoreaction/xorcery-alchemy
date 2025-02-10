@@ -1,0 +1,11 @@
+jars:
+  sourcejars:
+    - jar: projection
+      name: projection
+      enabled: "{{ jars.enabled }}"
+      projectionId: null
+  transmutejars:
+    - jar: projection
+      name: projection
+      enabled: "{{ jars.enabled }}"
+      projectionId: null

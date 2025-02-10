@@ -1,0 +1,18 @@
+---
+version: 1
+index_patterns:
+  - people-*
+template:
+  aliases:
+    people: {}
+  settings:
+    number_of_shards: 1
+    number_of_replicas: 0
+  mappings:
+    properties:
+      data:
+        type: object
+      metadata:
+        type: object
+composed_of:
+  - common

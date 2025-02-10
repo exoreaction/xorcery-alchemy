@@ -1,0 +1,56 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "type" : "object",
+  "title" : "xorcery.yaml JSON Schema",
+  "properties" : {
+    "graphql" : {
+      "$ref" : "#/$defs/graphql"
+    },
+    "jars" : {
+      "$ref" : "#/$defs/jars"
+    }
+  },
+  "$defs" : {
+    "graphql" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "schemas" : {
+          "type" : [ "array", "string" ]
+        }
+      }
+    },
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "graphqldomainevents",
+                  "description" : "Default: graphqldomainevents"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "graphqldomainevents",
+                  "description" : "Default: graphqldomainevents"
+                },
+                "metadata" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                }
+              }
+            } ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "type" : "object",
+  "title" : "xorcery.yaml JSON Schema",
+  "properties" : {
+    "jars" : {
+      "$ref" : "#/$defs/jars"
+    }
+  },
+  "$defs" : {
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "jslt",
+                  "description" : "Default: jslt"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "jslt",
+                  "description" : "Default: jslt"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "jslt" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          }
+        }
+      }
+    }
+  }
+}

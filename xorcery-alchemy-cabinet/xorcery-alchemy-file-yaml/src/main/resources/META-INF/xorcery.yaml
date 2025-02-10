@@ -1,0 +1,11 @@
+jars:
+  sourcejars:
+    - jar: yaml
+      name: yaml
+      enabled: "{{ jars.enabled }}"
+      sourceUrl: null
+  transmutejars:
+    - jar: yaml
+      name: yaml
+      enabled: "{{ jars.enabled }}"
+      resultUrl: null

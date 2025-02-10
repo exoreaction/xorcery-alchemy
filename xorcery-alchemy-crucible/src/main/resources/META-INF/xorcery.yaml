@@ -1,0 +1,6 @@
+crucible:
+  enabled: "{{ defaults.enabled }}"
+  closeWhenDone: true
+
+recipes: []
+transmutations: []

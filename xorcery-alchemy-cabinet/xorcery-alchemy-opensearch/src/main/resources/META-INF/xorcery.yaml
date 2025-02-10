@@ -1,0 +1,7 @@
+jars:
+  transmutejars:
+    - jar: opensearch
+      sourceUrl: null
+      host: null
+      index: null
+      alias: null

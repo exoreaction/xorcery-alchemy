@@ -1,0 +1,24 @@
+$schema: META-INF/xorcery-test-override-schema.json
+
+opensearch:
+  enabled: true
+  componentTemplates:
+    - id: "common"
+      resource: "resource://opensearch/templates/components/common.yaml"
+  indexTemplates:
+    - id: "people"
+      resource: "resource://opensearch/people.yaml"
+
+transmutations:
+- name: "testCsvToOpenSearch"
+  source:
+    jar: csv
+    name: "readcsvfilewithheaders"
+    headers: true
+    quote: "'"
+    sourceUrl: "resource://readcsvfilewithheaders.csv"
+  transmutes:
+  - jar: log
+  - jar: opensearch
+    index: "people-%tF"
+    alias: "people"

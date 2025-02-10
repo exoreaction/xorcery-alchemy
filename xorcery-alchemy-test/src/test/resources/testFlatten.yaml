@@ -1,0 +1,15 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "flatten"
+  source:
+    jar: yaml
+    sourceUrl: "resource://flatten.yaml"
+  transmutes:
+  - jar: flatten
+  - jar: rename
+    enabled: true
+    data:
+      Year: "data.timeseries.label"
+      Total: "data.timeseries.data.lineItems.total"
+      Country: "data.timeseries.data.lineItems.company.country"
+  - jar: log

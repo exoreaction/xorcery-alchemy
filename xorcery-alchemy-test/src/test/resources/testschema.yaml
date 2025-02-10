@@ -1,0 +1,15 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- source:
+    jar: concat
+    sources:
+      - jar: script
+        next:
+        bindings:
+          a: "b"
+  transmutes:
+    - jar: jslt
+    - jar: jslt
+      jslt: "asd"
+    - jar: rename
+      name: "foo"

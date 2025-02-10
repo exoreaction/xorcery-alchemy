@@ -1,0 +1,16 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "test"
+  source:
+    name: "merged-source-files"
+    jar: concat
+    sources:
+    - jar: yaml
+      sourceUrl: "resource://foo.yaml"
+    - jar: yaml
+      sourceUrl: "resource://bar.yaml"
+  transmutes:
+  - name: "jslt-transform"
+    jar: jslt
+    jslt: "{{ RESOURCE.string.transform.jslt }}"
+  - jar: log

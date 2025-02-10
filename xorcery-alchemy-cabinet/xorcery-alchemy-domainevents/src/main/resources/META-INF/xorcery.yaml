@@ -1,0 +1,10 @@
+$schema: xorcery-override-schema.json
+
+graphql:
+  schemas: []
+
+jars:
+  transmutejars:
+    - jar: graphqldomainevents
+      name: graphqldomainevents
+      metadata: {}

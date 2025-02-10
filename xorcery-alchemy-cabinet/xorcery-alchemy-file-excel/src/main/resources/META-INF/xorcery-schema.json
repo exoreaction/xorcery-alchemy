@@ -1,0 +1,78 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "type" : "object",
+  "title" : "xorcery.yaml JSON Schema",
+  "properties" : {
+    "jars" : {
+      "$ref" : "#/$defs/jars"
+    }
+  },
+  "$defs" : {
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "sourcejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          }
+        },
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "resultUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          }
+        }
+      }
+    }
+  }
+}

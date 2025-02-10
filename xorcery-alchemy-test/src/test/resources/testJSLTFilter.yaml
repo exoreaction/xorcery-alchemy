@@ -1,0 +1,28 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "jsltfilter"
+  source:
+    name: "merged-source-files"
+    jar: concat
+    sources:
+      - jar: yaml
+        sourceUrl: "resource://foo.yaml"
+      - jar: yaml
+        sourceUrl: "resource://bar.yaml"
+  transmutes:
+#        - name: "dropevents"
+#          jar: jslt
+#          jslt: "if (.data.test >= 3) . else null"
+  - name: "addcontext"
+    jar: jslt
+    context:
+      "var1": "value1"
+      "var2": "value2"
+    jslt: |+
+      {
+        "data": {
+          "var1": $var1,
+          "var2": $var2
+        } + .data
+      } + .
+  - jar: log
