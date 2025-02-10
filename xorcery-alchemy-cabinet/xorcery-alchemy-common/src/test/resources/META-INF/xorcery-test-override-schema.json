@@ -3,12 +3,6 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "object",
   "properties" : {
-    "crucible" : {
-      "$ref" : "#/$defs/crucible"
-    },
-    "jars" : {
-      "$ref" : "#/$defs/jars"
-    },
     "instance" : {
       "$ref" : "#/$defs/instance"
     },
@@ -50,206 +44,12 @@
     },
     "reactivestreams" : {
       "$ref" : "#/$defs/reactivestreams"
+    },
+    "jars" : {
+      "$ref" : "#/$defs/jars"
     }
   },
   "$defs" : {
-    "crucible" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
-        "closeWhenDone" : {
-          "type" : [ "boolean", "string" ],
-          "default" : true,
-          "description" : "Default: true"
-        }
-      }
-    },
-    "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
-        "sourcejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "concat",
-                  "description" : "Default: concat"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "concat",
-                  "description" : "Default: concat"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "sources" : {
-                  "type" : [ "array", "string" ]
-                }
-              }
-            }, {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "directory",
-                  "description" : "Default: directory"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "directory",
-                  "description" : "Default: directory"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "path" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "filter" : {
-                  "type" : "string",
-                  "default" : "*.*",
-                  "description" : "Default: *.*"
-                }
-              }
-            } ]
-          }
-        },
-        "transmutejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "flatten",
-                  "description" : "Default: flatten"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "flatten",
-                  "description" : "Default: flatten"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                }
-              }
-            }, {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "rename",
-                  "description" : "Default: rename"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "rename",
-                  "description" : "Default: rename"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "metadata" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
-                "data" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
-                "context" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                }
-              }
-            }, {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "retry",
-                  "description" : "Default: retry"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "retry",
-                  "description" : "Default: retry"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "maxAttempts" : {
-                  "type" : [ "number", "string" ],
-                  "default" : -1,
-                  "description" : "Default: -1"
-                },
-                "minBackoff" : {
-                  "type" : "string",
-                  "default" : "10S",
-                  "description" : "Default: 10S"
-                },
-                "maxBackoff" : {
-                  "type" : "string",
-                  "default" : "1M",
-                  "description" : "Default: 1M"
-                },
-                "multiplier" : {
-                  "type" : [ "number", "string" ],
-                  "default" : 2,
-                  "description" : "Default: 2"
-                },
-                "jitter" : {
-                  "type" : [ "number", "string" ],
-                  "default" : 0.5,
-                  "description" : "Default: 0.5"
-                },
-                "includes" : {
-                  "type" : [ "array", "string" ]
-                },
-                "excludes" : {
-                  "type" : [ "array", "string" ]
-                }
-              }
-            } ]
-          }
-        }
-      }
-    },
     "instance" : {
       "type" : "object",
       "additionalProperties" : false,
@@ -1297,6 +1097,182 @@
               "default" : 4096,
               "description" : "Default: 4096"
             }
+          }
+        }
+      }
+    },
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "sourcejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "concat",
+                  "description" : "Default: concat"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "concat",
+                  "description" : "Default: concat"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "sources" : {
+                  "type" : [ "array", "string" ]
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "directory",
+                  "description" : "Default: directory"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "directory",
+                  "description" : "Default: directory"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "path" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "filter" : {
+                  "type" : "string",
+                  "default" : "*.*",
+                  "description" : "Default: *.*"
+                }
+              }
+            } ]
+          }
+        },
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "flatten",
+                  "description" : "Default: flatten"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "flatten",
+                  "description" : "Default: flatten"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "rename",
+                  "description" : "Default: rename"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "rename",
+                  "description" : "Default: rename"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "metadata" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "data" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "context" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "retry",
+                  "description" : "Default: retry"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "retry",
+                  "description" : "Default: retry"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "maxAttempts" : {
+                  "type" : [ "number", "string" ],
+                  "default" : -1,
+                  "description" : "Default: -1"
+                },
+                "minBackoff" : {
+                  "type" : "string",
+                  "default" : "10S",
+                  "description" : "Default: 10S"
+                },
+                "maxBackoff" : {
+                  "type" : "string",
+                  "default" : "1M",
+                  "description" : "Default: 1M"
+                },
+                "multiplier" : {
+                  "type" : [ "number", "string" ],
+                  "default" : 2,
+                  "description" : "Default: 2"
+                },
+                "jitter" : {
+                  "type" : [ "number", "string" ],
+                  "default" : 0.5,
+                  "description" : "Default: 0.5"
+                },
+                "includes" : {
+                  "type" : [ "array", "string" ]
+                },
+                "excludes" : {
+                  "type" : [ "array", "string" ]
+                }
+              }
+            } ]
           }
         }
       }

@@ -3,9 +3,6 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "object",
   "properties" : {
-    "jars" : {
-      "$ref" : "#/$defs/jars"
-    },
     "instance" : {
       "$ref" : "#/$defs/instance"
     },
@@ -53,23 +50,6 @@
     }
   },
   "$defs" : {
-    "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
-        "sourcejars" : {
-          "type" : [ "array", "string" ]
-        },
-        "transmutejars" : {
-          "type" : [ "array", "string" ]
-        }
-      }
-    },
     "instance" : {
       "type" : "object",
       "additionalProperties" : false,

@@ -3,12 +3,6 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "object",
   "properties" : {
-    "crucible" : {
-      "$ref" : "#/$defs/crucible"
-    },
-    "jars" : {
-      "$ref" : "#/$defs/jars"
-    },
     "instance" : {
       "$ref" : "#/$defs/instance"
     },
@@ -50,69 +44,12 @@
     },
     "reactivestreams" : {
       "$ref" : "#/$defs/reactivestreams"
+    },
+    "jars" : {
+      "$ref" : "#/$defs/jars"
     }
   },
   "$defs" : {
-    "crucible" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
-        "closeWhenDone" : {
-          "type" : [ "boolean", "string" ],
-          "default" : true,
-          "description" : "Default: true"
-        }
-      }
-    },
-    "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
-        "sourcejars" : {
-          "type" : [ "array", "string" ]
-        },
-        "transmutejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "jslt",
-                  "description" : "Default: jslt"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "jslt",
-                  "description" : "Default: jslt"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "jslt" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                }
-              }
-            } ]
-          }
-        }
-      }
-    },
     "instance" : {
       "type" : "object",
       "additionalProperties" : false,
@@ -1160,6 +1097,42 @@
               "default" : 4096,
               "description" : "Default: 4096"
             }
+          }
+        }
+      }
+    },
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "jslt",
+                  "description" : "Default: jslt"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "jslt",
+                  "description" : "Default: jslt"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "jslt" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
           }
         }
       }
