@@ -3,6 +3,12 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "object",
   "properties" : {
+    "crucible" : {
+      "$ref" : "#/$defs/crucible"
+    },
+    "jars" : {
+      "$ref" : "#/$defs/jars"
+    },
     "instance" : {
       "$ref" : "#/$defs/instance"
     },
@@ -47,12 +53,86 @@
     },
     "yamlfilepublisher" : {
       "$ref" : "#/$defs/yamlfilepublisher"
-    },
-    "jars" : {
-      "$ref" : "#/$defs/jars"
     }
   },
   "$defs" : {
+    "crucible" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
+        },
+        "closeWhenDone" : {
+          "type" : [ "boolean", "string" ],
+          "default" : true,
+          "description" : "Default: true"
+        }
+      }
+    },
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
+        },
+        "sourcejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "csv",
+                  "description" : "Default: csv"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "csv",
+                  "description" : "Default: csv"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "escape" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "separator" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "quote" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "headers" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : false,
+                  "description" : "Default: false"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          }
+        },
+        "transmutejars" : {
+          "type" : [ "array", "string" ]
+        }
+      }
+    },
     "instance" : {
       "type" : "object",
       "additionalProperties" : false,
@@ -1115,59 +1195,6 @@
         },
         "publishers" : {
           "type" : [ "array", "string" ]
-        }
-      }
-    },
-    "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "sourcejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "csv",
-                  "description" : "Default: csv"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "csv",
-                  "description" : "Default: csv"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "escape" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "separator" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "quote" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "headers" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : false,
-                  "description" : "Default: false"
-                },
-                "sourceUrl" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                }
-              }
-            } ]
-          }
         }
       }
     }

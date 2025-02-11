@@ -3,6 +3,15 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "object",
   "properties" : {
+    "jars" : {
+      "$ref" : "#/$defs/jars"
+    },
+    "crucible" : {
+      "$ref" : "#/$defs/crucible"
+    },
+    "graphql" : {
+      "$ref" : "#/$defs/graphql"
+    },
     "instance" : {
       "$ref" : "#/$defs/instance"
     },
@@ -62,6 +71,566 @@
     }
   },
   "$defs" : {
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "sourcejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "concat",
+                  "description" : "Default: concat"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "concat",
+                  "description" : "Default: concat"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "sources" : {
+                  "type" : [ "array", "string" ]
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "directory",
+                  "description" : "Default: directory"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "directory",
+                  "description" : "Default: directory"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "path" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "filter" : {
+                  "type" : "string",
+                  "default" : "*.*",
+                  "description" : "Default: *.*"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "csv",
+                  "description" : "Default: csv"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "csv",
+                  "description" : "Default: csv"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "escape" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "separator" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "quote" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "headers" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : false,
+                  "description" : "Default: false"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "projectionId" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "script",
+                  "description" : "Default: script"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "script",
+                  "description" : "Default: script"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "bindings" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "subscribe" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "next" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          }
+        },
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "flatten",
+                  "description" : "Default: flatten"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "flatten",
+                  "description" : "Default: flatten"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "rename",
+                  "description" : "Default: rename"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "rename",
+                  "description" : "Default: rename"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "metadata" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "data" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "context" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "retry",
+                  "description" : "Default: retry"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "retry",
+                  "description" : "Default: retry"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "maxAttempts" : {
+                  "type" : [ "number", "string" ],
+                  "default" : -1,
+                  "description" : "Default: -1"
+                },
+                "minBackoff" : {
+                  "type" : "string",
+                  "default" : "10S",
+                  "description" : "Default: 10S"
+                },
+                "maxBackoff" : {
+                  "type" : "string",
+                  "default" : "1M",
+                  "description" : "Default: 1M"
+                },
+                "multiplier" : {
+                  "type" : [ "number", "string" ],
+                  "default" : 2,
+                  "description" : "Default: 2"
+                },
+                "jitter" : {
+                  "type" : [ "number", "string" ],
+                  "default" : 0.5,
+                  "description" : "Default: 0.5"
+                },
+                "includes" : {
+                  "type" : [ "array", "string" ]
+                },
+                "excludes" : {
+                  "type" : [ "array", "string" ]
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "graphqldomainevents",
+                  "description" : "Default: graphqldomainevents"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "graphqldomainevents",
+                  "description" : "Default: graphqldomainevents"
+                },
+                "metadata" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "excel",
+                  "description" : "Default: excel"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "resultUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "resultUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "jslt",
+                  "description" : "Default: jslt"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "jslt",
+                  "description" : "Default: jslt"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "jslt" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "log",
+                  "description" : "Default: log"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "log",
+                  "description" : "Default: log"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "level" : {
+                  "type" : "string",
+                  "default" : "INFO",
+                  "description" : "Default: INFO"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "projectionId" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "opensearch",
+                  "description" : "Default: opensearch"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "host" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "index" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "alias" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "script",
+                  "description" : "Default: script"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "script",
+                  "description" : "Default: script"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "bindings" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "subscribe" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "next" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "error" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "complete" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          }
+        },
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
+        }
+      }
+    },
+    "crucible" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
+        },
+        "closeWhenDone" : {
+          "type" : [ "boolean", "string" ],
+          "default" : true,
+          "description" : "Default: true"
+        }
+      }
+    },
+    "graphql" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "schemas" : {
+          "type" : [ "array", "string" ]
+        }
+      }
+    },
     "instance" : {
       "type" : "object",
       "additionalProperties" : false,

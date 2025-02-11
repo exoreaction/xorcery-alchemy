@@ -3,6 +3,12 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "object",
   "properties" : {
+    "crucible" : {
+      "$ref" : "#/$defs/crucible"
+    },
+    "jars" : {
+      "$ref" : "#/$defs/jars"
+    },
     "instance" : {
       "$ref" : "#/$defs/instance"
     },
@@ -47,12 +53,65 @@
     },
     "graphql" : {
       "$ref" : "#/$defs/graphql"
-    },
-    "jars" : {
-      "$ref" : "#/$defs/jars"
     }
   },
   "$defs" : {
+    "crucible" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
+        },
+        "closeWhenDone" : {
+          "type" : [ "boolean", "string" ],
+          "default" : true,
+          "description" : "Default: true"
+        }
+      }
+    },
+    "jars" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
+        },
+        "sourcejars" : {
+          "type" : [ "array", "string" ]
+        },
+        "transmutejars" : {
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "graphqldomainevents",
+                  "description" : "Default: graphqldomainevents"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "graphqldomainevents",
+                  "description" : "Default: graphqldomainevents"
+                },
+                "metadata" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                }
+              }
+            } ]
+          }
+        }
+      }
+    },
     "instance" : {
       "type" : "object",
       "additionalProperties" : false,
@@ -1110,38 +1169,6 @@
       "properties" : {
         "schemas" : {
           "type" : [ "array", "string" ]
-        }
-      }
-    },
-    "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "transmutejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "graphqldomainevents",
-                  "description" : "Default: graphqldomainevents"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "graphqldomainevents",
-                  "description" : "Default: graphqldomainevents"
-                },
-                "metadata" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                }
-              }
-            } ]
-          }
         }
       }
     }
