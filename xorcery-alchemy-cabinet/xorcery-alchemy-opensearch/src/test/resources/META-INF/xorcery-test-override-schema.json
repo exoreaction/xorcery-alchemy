@@ -6,6 +6,12 @@
     "crucible" : {
       "$ref" : "#/$defs/crucible"
     },
+    "recipes" : {
+      "$ref" : "#/$defs/transmutations"
+    },
+    "transmutations" : {
+      "$ref" : "#/$defs/transmutations"
+    },
     "jars" : {
       "$ref" : "#/$defs/jars"
     },
@@ -59,6 +65,9 @@
     },
     "yamlfilepublisher" : {
       "$ref" : "#/$defs/yamlfilepublisher"
+    },
+    "runner" : {
+      "$ref" : "#/$defs/runner"
     }
   },
   "$defs" : {
@@ -75,6 +84,41 @@
           "type" : [ "boolean", "string" ],
           "default" : true,
           "description" : "Default: true"
+        }
+      }
+    },
+    "recipes" : {
+      "type" : "array"
+    },
+    "transmutations" : {
+      "$ref" : "#/$defs/recipes",
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "enabled" : {
+            "type" : [ "boolean", "string" ],
+            "default" : true,
+            "description" : "Default: true"
+          },
+          "name" : {
+            "type" : [ "null", "string" ],
+            "description" : "Default: null"
+          },
+          "recipe" : {
+            "type" : [ "null", "string" ],
+            "description" : "Default: null"
+          },
+          "source" : {
+            "$ref" : "#/$defs/jars/properties/sourcejars/items"
+          },
+          "transmutes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/$defs/jars/properties/transmutejars/items"
+            }
+          }
         }
       }
     },
@@ -1244,6 +1288,17 @@
         },
         "publishers" : {
           "type" : [ "array", "string" ]
+        }
+      }
+    },
+    "runner" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "keepRunning" : {
+          "type" : [ "boolean", "string" ],
+          "default" : true,
+          "description" : "Default: true"
         }
       }
     }

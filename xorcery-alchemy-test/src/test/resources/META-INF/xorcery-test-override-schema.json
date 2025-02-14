@@ -9,6 +9,12 @@
     "crucible" : {
       "$ref" : "#/$defs/crucible"
     },
+    "recipes" : {
+      "$ref" : "#/$defs/transmutations"
+    },
+    "transmutations" : {
+      "$ref" : "#/$defs/transmutations"
+    },
     "graphql" : {
       "$ref" : "#/$defs/graphql"
     },
@@ -68,6 +74,9 @@
     },
     "yamlfilepublisher" : {
       "$ref" : "#/$defs/yamlfilepublisher"
+    },
+    "runner" : {
+      "$ref" : "#/$defs/runner"
     }
   },
   "$defs" : {
@@ -96,6 +105,76 @@
                   "type" : [ "boolean", "string" ],
                   "default" : true,
                   "description" : "Default: true"
+                },
+                "sources" : {
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "$ref" : "#/$defs/jars/properties/sourcejars/items"
+                  }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "oneOf",
+                  "description" : "Default: oneOf"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "oneOf",
+                  "description" : "Default: oneOf"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "source" : {
+                  "default" : null,
+                  "description" : "Name of source to use",
+                  "type" : "string"
+                },
+                "sources" : {
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "$ref" : "#/$defs/jars/properties/sourcejars/items"
+                  }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "directory",
+                  "description" : "Default: directory"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "directory",
+                  "description" : "Default: directory"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "path" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "filter" : {
+                  "type" : "string",
+                  "default" : "*.*",
+                  "description" : "Default: *.*"
+                },
+                "source" : {
+                  "default" : null,
+                  "description" : "Default: null"
                 },
                 "sources" : {
                   "type" : [ "array", "string" ]
@@ -335,6 +414,125 @@
                   "type" : "object",
                   "additionalProperties" : true,
                   "properties" : { }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "oneOf",
+                  "description" : "Default: oneOf"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "oneOf",
+                  "description" : "Default: oneOf"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "transmute" : {
+                  "default" : null,
+                  "description" : "Name of transmute to use",
+                  "type" : "string"
+                },
+                "transmutes" : {
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
+                  }
+                }
+              },
+              "required" : [ "transmute" ]
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "transmutes",
+                  "description" : "Default: transmutes"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "transmutes",
+                  "description" : "Default: transmutes"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "transmutes" : {
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
+                  }
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "retry",
+                  "description" : "Default: retry"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "retry",
+                  "description" : "Default: retry"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "maxAttempts" : {
+                  "type" : [ "number", "string" ],
+                  "default" : -1,
+                  "description" : "Default: -1"
+                },
+                "minBackoff" : {
+                  "type" : "string",
+                  "default" : "10S",
+                  "description" : "Default: 10S"
+                },
+                "maxBackoff" : {
+                  "type" : "string",
+                  "default" : "1M",
+                  "description" : "Default: 1M"
+                },
+                "multiplier" : {
+                  "type" : [ "number", "string" ],
+                  "default" : 2,
+                  "description" : "Default: 2"
+                },
+                "jitter" : {
+                  "type" : [ "number", "string" ],
+                  "default" : 0.5,
+                  "description" : "Default: 0.5"
+                },
+                "includes" : {
+                  "type" : [ "array", "string" ]
+                },
+                "excludes" : {
+                  "type" : [ "array", "string" ]
+                },
+                "transmute" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                },
+                "transmutes" : {
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
+                  }
                 }
               }
             }, {
@@ -619,6 +817,41 @@
           "type" : [ "boolean", "string" ],
           "default" : true,
           "description" : "Default: true"
+        }
+      }
+    },
+    "recipes" : {
+      "type" : "array"
+    },
+    "transmutations" : {
+      "$ref" : "#/$defs/recipes",
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "enabled" : {
+            "type" : [ "boolean", "string" ],
+            "default" : true,
+            "description" : "Default: true"
+          },
+          "name" : {
+            "type" : [ "null", "string" ],
+            "description" : "Default: null"
+          },
+          "recipe" : {
+            "type" : [ "null", "string" ],
+            "description" : "Default: null"
+          },
+          "source" : {
+            "$ref" : "#/$defs/jars/properties/sourcejars/items"
+          },
+          "transmutes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/$defs/jars/properties/transmutejars/items"
+            }
+          }
         }
       }
     },
@@ -1908,6 +2141,17 @@
         },
         "publishers" : {
           "type" : [ "array", "string" ]
+        }
+      }
+    },
+    "runner" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "keepRunning" : {
+          "type" : [ "boolean", "string" ],
+          "default" : true,
+          "description" : "Default: true"
         }
       }
     }

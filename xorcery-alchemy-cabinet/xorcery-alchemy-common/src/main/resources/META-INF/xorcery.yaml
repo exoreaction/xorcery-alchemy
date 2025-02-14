@@ -4,6 +4,13 @@ jars:
       name: concat
       enabled: "{{ jars.enabled }}"
       sources: []
+
+    - jar: oneOf
+      name: oneOf
+      enabled: "{{ jars.enabled }}"
+      source: null
+      sources: []
+
     - jar: directory
       name: directory
       enabled: "{{ jars.enabled }}"
@@ -21,6 +28,17 @@ jars:
       metadata: {}
       data: {}
       context: {}
+
+    - jar: oneOf
+      name: oneOf
+      enabled: "{{ jars.enabled }}"
+      transmute: null
+      transmutes: []
+
+    - jar: transmutes
+      name: transmutes
+      enabled: "{{ jars.enabled }}"
+      transmutes: []
 
     - jar: retry
       name: retry

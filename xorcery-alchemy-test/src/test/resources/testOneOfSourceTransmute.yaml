@@ -1,0 +1,34 @@
+$schema: META-INF/xorcery-test-override-schema.json
+
+input: "csv"
+output: "excel"
+
+transmutations:
+- name: "oneof"
+  source:
+    jar: oneOf
+    source: "{{ input }}"
+    sources:
+    - jar: yaml
+      sourceUrl: "resource://yamlsource.yaml"
+    - jar: csv
+      sourceUrl: "resource://readcsvfilewithheaders.csv"
+  transmutes:
+    - jar: oneOf
+      transmute: "{{ output }}"
+      transmutes:
+        - jar: transmutes
+          name: "yaml"
+          transmutes:
+          - jar: log
+            name: "yamloutput"
+          - jar: yaml
+            resultUrl: "file://{{ instance.home }}/yamlresult.yaml"
+        - jar: transmutes
+          name: "excel"
+          transmutes:
+          - jar: log
+            name: "exceloutput"
+          - jar: excel
+            resultUrl: "file://{{ instance.home }}/excelresult.xlsx"
+

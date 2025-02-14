@@ -48,8 +48,17 @@
     "reactivestreams" : {
       "$ref" : "#/$defs/reactivestreams"
     },
+    "runner" : {
+      "$ref" : "#/$defs/runner"
+    },
     "crucible" : {
       "$ref" : "#/$defs/crucible"
+    },
+    "recipes" : {
+      "$ref" : "#/$defs/transmutations"
+    },
+    "transmutations" : {
+      "$ref" : "#/$defs/transmutations"
     }
   },
   "$defs" : {
@@ -1121,6 +1130,17 @@
         }
       }
     },
+    "runner" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "keepRunning" : {
+          "type" : [ "boolean", "string" ],
+          "default" : true,
+          "description" : "Default: true"
+        }
+      }
+    },
     "crucible" : {
       "type" : "object",
       "additionalProperties" : false,
@@ -1134,6 +1154,41 @@
           "type" : [ "boolean", "string" ],
           "default" : true,
           "description" : "Default: true"
+        }
+      }
+    },
+    "recipes" : {
+      "type" : "array"
+    },
+    "transmutations" : {
+      "$ref" : "#/$defs/recipes",
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "enabled" : {
+            "type" : [ "boolean", "string" ],
+            "default" : true,
+            "description" : "Default: true"
+          },
+          "name" : {
+            "type" : [ "null", "string" ],
+            "description" : "Default: null"
+          },
+          "recipe" : {
+            "type" : [ "null", "string" ],
+            "description" : "Default: null"
+          },
+          "source" : {
+            "$ref" : "#/$defs/jars/properties/sourcejars/items"
+          },
+          "transmutes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/$defs/jars/properties/transmutejars/items"
+            }
+          }
         }
       }
     }
