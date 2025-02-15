@@ -22,7 +22,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "log",
-                  "description" : "Default: log"
+                  "description" : "Default: log",
+                  "const" : "log"
                 },
                 "name" : {
                   "type" : "string",

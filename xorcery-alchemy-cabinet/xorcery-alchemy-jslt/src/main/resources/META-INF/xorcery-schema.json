@@ -22,7 +22,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "jslt",
-                  "description" : "Default: jslt"
+                  "description" : "Default: jslt",
+                  "const" : "jslt"
                 },
                 "name" : {
                   "type" : "string",

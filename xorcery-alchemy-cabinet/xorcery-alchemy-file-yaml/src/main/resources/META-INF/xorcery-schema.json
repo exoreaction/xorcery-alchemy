@@ -22,7 +22,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "description" : "Default: yaml",
+                  "const" : "yaml"
                 },
                 "name" : {
                   "type" : "string",
@@ -52,7 +53,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "description" : "Default: yaml",
+                  "const" : "yaml"
                 },
                 "name" : {
                   "type" : "string",

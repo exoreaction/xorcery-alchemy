@@ -138,7 +138,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "graphqldomainevents",
-                  "description" : "Default: graphqldomainevents"
+                  "description" : "Default: graphqldomainevents",
+                  "const" : "graphqldomainevents"
                 },
                 "name" : {
                   "type" : "string",
@@ -1215,15 +1216,6 @@
           "type" : [ "boolean", "string" ],
           "default" : true,
           "description" : "Default: true"
-        }
-      }
-    },
-    "graphql" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "schemas" : {
-          "type" : [ "array", "string" ]
         }
       }
     }

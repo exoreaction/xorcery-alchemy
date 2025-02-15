@@ -22,7 +22,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "csv",
-                  "description" : "Default: csv"
+                  "description" : "Default: csv",
+                  "const" : "csv"
                 },
                 "name" : {
                   "type" : "string",

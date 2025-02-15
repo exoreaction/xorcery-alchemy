@@ -141,7 +141,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "projection",
-                  "description" : "Default: projection"
+                  "description" : "Default: projection",
+                  "const" : "projection"
                 },
                 "name" : {
                   "type" : "string",
@@ -171,7 +172,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "projection",
-                  "description" : "Default: projection"
+                  "description" : "Default: projection",
+                  "const" : "projection"
                 },
                 "name" : {
                   "type" : "string",

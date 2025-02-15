@@ -3,23 +3,14 @@
   "type" : "object",
   "title" : "xorcery.yaml JSON Schema",
   "properties" : {
-    "graphql" : {
-      "$ref" : "#/$defs/graphql"
-    },
     "jars" : {
       "$ref" : "#/$defs/jars"
+    },
+    "graphql" : {
+      "$ref" : "#/$defs/graphql"
     }
   },
   "$defs" : {
-    "graphql" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "schemas" : {
-          "type" : [ "array", "string" ]
-        }
-      }
-    },
     "jars" : {
       "type" : "object",
       "additionalProperties" : false,
@@ -34,7 +25,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "graphqldomainevents",
-                  "description" : "Default: graphqldomainevents"
+                  "description" : "Default: graphqldomainevents",
+                  "const" : "graphqldomainevents"
                 },
                 "name" : {
                   "type" : "string",

@@ -94,7 +94,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "concat",
-                  "description" : "Default: concat"
+                  "description" : "Default: concat",
+                  "const" : "concat"
                 },
                 "name" : {
                   "type" : "string",
@@ -120,7 +121,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "oneOf",
-                  "description" : "Default: oneOf"
+                  "description" : "Default: oneOf",
+                  "const" : "oneOf"
                 },
                 "name" : {
                   "type" : "string",
@@ -151,7 +153,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "directory",
-                  "description" : "Default: directory"
+                  "description" : "Default: directory",
+                  "const" : "directory"
                 },
                 "name" : {
                   "type" : "string",
@@ -186,37 +189,9 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "directory",
-                  "description" : "Default: directory"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "directory",
-                  "description" : "Default: directory"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "path" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "filter" : {
-                  "type" : "string",
-                  "default" : "*.*",
-                  "description" : "Default: *.*"
-                }
-              }
-            }, {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
                   "default" : "csv",
-                  "description" : "Default: csv"
+                  "description" : "Default: csv",
+                  "const" : "csv"
                 },
                 "name" : {
                   "type" : "string",
@@ -257,7 +232,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "excel",
-                  "description" : "Default: excel"
+                  "description" : "Default: excel",
+                  "const" : "excel"
                 },
                 "name" : {
                   "type" : "string",
@@ -281,7 +257,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "description" : "Default: yaml",
+                  "const" : "yaml"
                 },
                 "name" : {
                   "type" : "string",
@@ -305,7 +282,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "projection",
-                  "description" : "Default: projection"
+                  "description" : "Default: projection",
+                  "const" : "projection"
                 },
                 "name" : {
                   "type" : "string",
@@ -329,7 +307,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "script",
-                  "description" : "Default: script"
+                  "description" : "Default: script",
+                  "const" : "script"
                 },
                 "name" : {
                   "type" : "string",
@@ -367,8 +346,9 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "flatten",
-                  "description" : "Default: flatten"
+                  "default" : "crucible",
+                  "description" : "Default: flatten",
+                  "const" : "flatten"
                 },
                 "name" : {
                   "type" : "string",
@@ -387,8 +367,9 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "rename",
-                  "description" : "Default: rename"
+                  "default" : "flatten",
+                  "description" : "Default: rename",
+                  "const" : "rename"
                 },
                 "name" : {
                   "type" : "string",
@@ -423,7 +404,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "oneOf",
-                  "description" : "Default: oneOf"
+                  "description" : "Default: oneOf",
+                  "const" : "oneOf"
                 },
                 "name" : {
                   "type" : "string",
@@ -454,8 +436,9 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "transmutes",
-                  "description" : "Default: transmutes"
+                  "default" : "rename",
+                  "description" : "Default: transmutes",
+                  "const" : "transmutes"
                 },
                 "name" : {
                   "type" : "string",
@@ -466,6 +449,21 @@
                   "type" : [ "boolean", "string" ],
                   "default" : true,
                   "description" : "Default: true"
+                },
+                "metadata" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "data" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
+                "context" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
                 },
                 "transmutes" : {
                   "type" : [ "array", "string" ],
@@ -481,7 +479,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "retry",
-                  "description" : "Default: retry"
+                  "description" : "Default: retry",
+                  "const" : "retry"
                 },
                 "name" : {
                   "type" : "string",
@@ -541,48 +540,20 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "retry",
-                  "description" : "Default: retry"
+                  "default" : "transmutes",
+                  "description" : "Default: transmutes"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "retry",
-                  "description" : "Default: retry"
+                  "default" : "transmutes",
+                  "description" : "Default: transmutes"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
                   "default" : true,
                   "description" : "Default: true"
                 },
-                "maxAttempts" : {
-                  "type" : [ "number", "string" ],
-                  "default" : -1,
-                  "description" : "Default: -1"
-                },
-                "minBackoff" : {
-                  "type" : "string",
-                  "default" : "10S",
-                  "description" : "Default: 10S"
-                },
-                "maxBackoff" : {
-                  "type" : "string",
-                  "default" : "1M",
-                  "description" : "Default: 1M"
-                },
-                "multiplier" : {
-                  "type" : [ "number", "string" ],
-                  "default" : 2,
-                  "description" : "Default: 2"
-                },
-                "jitter" : {
-                  "type" : [ "number", "string" ],
-                  "default" : 0.5,
-                  "description" : "Default: 0.5"
-                },
-                "includes" : {
-                  "type" : [ "array", "string" ]
-                },
-                "excludes" : {
+                "transmutes" : {
                   "type" : [ "array", "string" ]
                 }
               }
@@ -593,7 +564,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "graphqldomainevents",
-                  "description" : "Default: graphqldomainevents"
+                  "description" : "Default: graphqldomainevents",
+                  "const" : "graphqldomainevents"
                 },
                 "name" : {
                   "type" : "string",
@@ -613,7 +585,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "excel",
-                  "description" : "Default: excel"
+                  "description" : "Default: excel",
+                  "const" : "excel"
                 },
                 "name" : {
                   "type" : "string",
@@ -637,7 +610,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "description" : "Default: yaml",
+                  "const" : "yaml"
                 },
                 "name" : {
                   "type" : "string",
@@ -661,7 +635,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "jslt",
-                  "description" : "Default: jslt"
+                  "description" : "Default: jslt",
+                  "const" : "jslt"
                 },
                 "name" : {
                   "type" : "string",
@@ -685,7 +660,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "log",
-                  "description" : "Default: log"
+                  "description" : "Default: log",
+                  "const" : "log"
                 },
                 "name" : {
                   "type" : "string",
@@ -710,7 +686,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "projection",
-                  "description" : "Default: projection"
+                  "description" : "Default: projection",
+                  "const" : "projection"
                 },
                 "name" : {
                   "type" : "string",
@@ -734,7 +711,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "opensearch",
-                  "description" : "Default: opensearch"
+                  "description" : "Default: opensearch",
+                  "const" : "opensearch"
                 },
                 "sourceUrl" : {
                   "default" : null,
@@ -760,7 +738,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "script",
-                  "description" : "Default: script"
+                  "description" : "Default: script",
+                  "const" : "script"
                 },
                 "name" : {
                   "type" : "string",
@@ -852,15 +831,6 @@
               "$ref" : "#/$defs/jars/properties/transmutejars/items"
             }
           }
-        }
-      }
-    },
-    "graphql" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "schemas" : {
-          "type" : [ "array", "string" ]
         }
       }
     },

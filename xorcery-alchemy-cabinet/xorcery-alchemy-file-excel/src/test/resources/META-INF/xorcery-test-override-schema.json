@@ -135,7 +135,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "excel",
-                  "description" : "Default: excel"
+                  "description" : "Default: excel",
+                  "const" : "excel"
                 },
                 "name" : {
                   "type" : "string",
@@ -165,7 +166,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "excel",
-                  "description" : "Default: excel"
+                  "description" : "Default: excel",
+                  "const" : "excel"
                 },
                 "name" : {
                   "type" : "string",

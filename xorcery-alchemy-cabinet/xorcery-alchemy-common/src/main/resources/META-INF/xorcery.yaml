@@ -1,3 +1,4 @@
+$schema: xorcery-override-schema.json
 jars:
   sourcejars:
     - jar: concat
@@ -18,16 +19,13 @@ jars:
       filter: "*.*"
 
   transmutejars:
+    - jar: crucible
+      name: crucible
+      enabled: "{{ jars.enabled }}"
+
     - jar: flatten
       name: flatten
       enabled: "{{ jars.enabled }}"
-
-    - jar: rename
-      name: rename
-      enabled: "{{ jars.enabled }}"
-      metadata: {}
-      data: {}
-      context: {}
 
     - jar: oneOf
       name: oneOf
@@ -35,10 +33,12 @@ jars:
       transmute: null
       transmutes: []
 
-    - jar: transmutes
-      name: transmutes
+    - jar: rename
+      name: rename
       enabled: "{{ jars.enabled }}"
-      transmutes: []
+      metadata: {}
+      data: {}
+      context: {}
 
     - jar: retry
       name: retry
@@ -54,3 +54,7 @@ jars:
       # Exception names to not retry on, with or without package name
       excludes: []
 
+    - jar: transmutes
+      name: transmutes
+      enabled: "{{ jars.enabled }}"
+      transmutes: []

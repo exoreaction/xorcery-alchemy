@@ -144,7 +144,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "opensearch",
-                  "description" : "Default: opensearch"
+                  "description" : "Default: opensearch",
+                  "const" : "opensearch"
                 },
                 "sourceUrl" : {
                   "default" : null,

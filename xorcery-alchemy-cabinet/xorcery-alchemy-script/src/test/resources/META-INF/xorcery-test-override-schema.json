@@ -132,7 +132,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "script",
-                  "description" : "Default: script"
+                  "description" : "Default: script",
+                  "const" : "script"
                 },
                 "name" : {
                   "type" : "string",
@@ -171,7 +172,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "script",
-                  "description" : "Default: script"
+                  "description" : "Default: script",
+                  "const" : "script"
                 },
                 "name" : {
                   "type" : "string",
