@@ -35,6 +35,11 @@
                   "default" : true,
                   "description" : "Default: true"
                 },
+                "context" : {
+                  "type" : "object",
+                  "additionalProperties" : true,
+                  "properties" : { }
+                },
                 "jslt" : {
                   "default" : null,
                   "description" : "Default: null"

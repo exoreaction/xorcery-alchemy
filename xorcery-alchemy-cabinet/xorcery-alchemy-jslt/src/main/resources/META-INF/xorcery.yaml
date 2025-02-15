@@ -3,4 +3,5 @@ jars:
     - jar: jslt
       name: jslt
       enabled: "{{ jars.enabled }}"
+      context: {}
       jslt: null
