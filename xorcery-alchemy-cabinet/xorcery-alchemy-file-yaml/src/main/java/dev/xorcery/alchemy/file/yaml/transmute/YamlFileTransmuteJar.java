@@ -50,7 +50,7 @@ public class YamlFileTransmuteJar
             }
 
             if (fileUrl.getScheme().equals("file")) {
-                new File(fileUrl.toASCIIString().substring("file://".length())).getParentFile().mkdirs();
+                new File(fileUrl).getParentFile().mkdirs();
             }
 
             try {
