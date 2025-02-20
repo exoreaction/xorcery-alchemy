@@ -21,7 +21,7 @@
     <parent>
         <groupId>dev.xorcery.alchemy</groupId>
         <artifactId>xorcery-alchemy-cabinet</artifactId>
-        <version>0.2.8-SNAPSHOT</version>
+        <version>0.2.8</version>
     </parent>
 
     <artifactId>xorcery-alchemy-neo4jprojection</artifactId>
