@@ -55,7 +55,7 @@ public class YamlFileTransmuteJar
 
             try {
                 BufferedOutputStream outputStream = new BufferedOutputStream(fileUrl.getScheme().equals("file")
-                        ? new FileOutputStream(new File(fileUrl.toASCIIString().substring("file://".length())).getAbsoluteFile())
+                        ? new FileOutputStream(new File(fileUrl).getAbsoluteFile())
                         : fileUrl.toURL().openConnection().getOutputStream());
                 ObjectMapper mapper = new YAMLMapper().findAndRegisterModules()
                         .configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false)
