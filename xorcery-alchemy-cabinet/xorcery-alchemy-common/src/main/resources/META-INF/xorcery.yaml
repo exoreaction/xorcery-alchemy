@@ -27,6 +27,10 @@ jars:
       name: flatten
       enabled: "{{ jars.enabled }}"
 
+    - jar: noop
+      name: noop
+      enabled: "{{ jars.enabled }}"
+
     - jar: oneOf
       name: oneOf
       enabled: "{{ jars.enabled }}"

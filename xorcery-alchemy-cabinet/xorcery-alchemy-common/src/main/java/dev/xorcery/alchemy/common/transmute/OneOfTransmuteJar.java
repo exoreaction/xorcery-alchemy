@@ -52,7 +52,7 @@ public class OneOfTransmuteJar
                                         .filter(transmute -> transmute.getName().orElseGet(transmute::getJar).equals(name))
                                         .findFirst()
                                         .flatMap(transmute -> transmutations.applyTransmuteFlux(flux, transmute, transmutationConfiguration))
-                                        .orElseGet(() -> flux.handle((item, sink) -> sink.error(new IllegalArgumentException("No transmute named '" + name + "' found")))))
+                                        .orElse(flux))
                                 .orElseGet(() -> Flux.error(missing("transmute").get())))
                 .orElse(Flux.empty());
     }
