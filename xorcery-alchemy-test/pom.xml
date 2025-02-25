@@ -21,7 +21,7 @@
     <parent>
         <groupId>dev.xorcery.alchemy</groupId>
         <artifactId>xorcery-alchemy-parent</artifactId>
-        <version>0.2.10-SNAPSHOT</version>
+        <version>0.2.10</version>
         <relativePath>../xorcery-alchemy-parent</relativePath>
     </parent>
 
