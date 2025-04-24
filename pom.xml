@@ -4,14 +4,14 @@
 
     <groupId>dev.xorcery.alchemy</groupId>
     <artifactId>xorcery-alchemy</artifactId>
-    <version>0.2.12</version>
+    <version>0.2.13-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <scm>
         <developerConnection>scm:git:ssh://git@github.com/exoreaction/xorcery-alchemy.git</developerConnection>
         <connection>scm:git:https://github.com/exoreaction/xorcery-alchemy.git</connection>
         <url>https://github.com/exoreaction/xorcery-alchemy</url>
-        <tag>xorcery-alchemy-0.2.12</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
