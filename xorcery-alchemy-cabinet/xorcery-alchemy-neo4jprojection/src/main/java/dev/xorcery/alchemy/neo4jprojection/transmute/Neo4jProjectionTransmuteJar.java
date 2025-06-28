@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.xorcery.alchemy.jar.JarConfiguration;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import dev.xorcery.alchemy.jar.Transmute;
 import dev.xorcery.alchemy.jar.TransmuteJar;
 import dev.xorcery.domainevents.api.DomainEvent;
 import dev.xorcery.domainevents.api.JsonDomainEvent;
@@ -52,7 +53,7 @@ public class Neo4jProjectionTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         return (flux, context) -> flux.<MetadataEvents>handle((metadatajson, sink) -> {
                     if (metadatajson.data() instanceof ArrayNode arrayNode) {
                         List<DomainEvent> events = new ArrayList<>(arrayNode.size());

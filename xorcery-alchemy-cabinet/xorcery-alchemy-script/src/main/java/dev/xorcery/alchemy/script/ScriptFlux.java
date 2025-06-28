@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.xorcery.alchemy.jar.JarConfiguration;
 import dev.xorcery.alchemy.jar.JarException;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import dev.xorcery.alchemy.jar.Transmute;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import org.apache.logging.log4j.Logger;
 import org.reactivestreams.Publisher;
@@ -38,7 +39,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.function.BiFunction;
 
 public class ScriptFlux
-        implements BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> {
+        implements Transmute {
     private final Logger logger;
     private final ScriptExecutor subscribe;
     private final ScriptExecutor next;

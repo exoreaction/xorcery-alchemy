@@ -18,10 +18,7 @@ package dev.xorcery.alchemy.script.transmute;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.xorcery.alchemy.jar.JarConfiguration;
-import dev.xorcery.alchemy.jar.JarException;
-import dev.xorcery.alchemy.jar.TransmutationConfiguration;
-import dev.xorcery.alchemy.jar.TransmuteJar;
+import dev.xorcery.alchemy.jar.*;
 import dev.xorcery.alchemy.script.ByteArrayOutputStreamWithoutNewLine;
 import dev.xorcery.alchemy.script.ScriptFlux;
 import dev.xorcery.alchemy.script.ServicesJSObject;
@@ -59,7 +56,7 @@ public class ScriptTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         String engineName = jarConfiguration.getString("engine").orElse("nashorn");
         ScriptEngine engine = new ScriptEngineManager().getEngineByName(engineName);
         if (engine == null) {

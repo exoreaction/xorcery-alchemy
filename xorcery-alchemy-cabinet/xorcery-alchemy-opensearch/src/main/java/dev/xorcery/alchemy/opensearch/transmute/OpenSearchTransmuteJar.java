@@ -16,10 +16,7 @@
 package dev.xorcery.alchemy.opensearch.transmute;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import dev.xorcery.alchemy.jar.JarConfiguration;
-import dev.xorcery.alchemy.jar.JarContext;
-import dev.xorcery.alchemy.jar.TransmutationConfiguration;
-import dev.xorcery.alchemy.jar.TransmuteJar;
+import dev.xorcery.alchemy.jar.*;
 import dev.xorcery.lang.Exceptions;
 import dev.xorcery.opensearch.OpenSearchService;
 import dev.xorcery.opensearch.client.search.Document;
@@ -52,7 +49,7 @@ public class OpenSearchTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         return (flux, context)-> flux.contextWrite(ctx ->
         {
             // Find last metadata.streamPosition for this sourceUrl under the given alias

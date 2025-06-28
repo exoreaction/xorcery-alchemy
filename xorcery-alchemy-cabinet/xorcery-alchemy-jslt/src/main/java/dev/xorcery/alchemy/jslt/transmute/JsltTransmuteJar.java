@@ -24,6 +24,7 @@ import com.schibsted.spt.data.jslt.Function;
 import com.schibsted.spt.data.jslt.Parser;
 import dev.xorcery.alchemy.jar.JarConfiguration;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import dev.xorcery.alchemy.jar.Transmute;
 import dev.xorcery.alchemy.jar.TransmuteJar;
 import dev.xorcery.metadata.Metadata;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
@@ -55,17 +56,17 @@ public class JsltTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
 
-        return jarConfiguration.configuration().getJson("jslt").<BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>>>map(jslt ->
+        return jarConfiguration.configuration().getJson("jslt").<Transmute>map(jslt ->
                 {
                     Expression expression = Parser.compileString(jslt.asText(), customFunctions);
                     return newJsltTransmuteFactory(expression, jarConfiguration);
                 }
-        ).orElse((metadataJsonNodeFlux, contextView) -> Flux.error(new IllegalArgumentException("Missing 'jslt' transformation configuration")));
+        ).orElseGet(()-> (metadataJsonNodeFlux, contextView) -> Flux.error(new IllegalArgumentException("Missing 'jslt' transformation configuration")));
     }
 
-    BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newJsltTransmuteFactory(Expression expression, JarConfiguration jarConfiguration)
+    Transmute newJsltTransmuteFactory(Expression expression, JarConfiguration jarConfiguration)
     {
         return (flux, context)->
         {

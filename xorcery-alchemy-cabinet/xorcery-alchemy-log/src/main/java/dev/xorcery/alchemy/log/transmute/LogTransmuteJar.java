@@ -18,6 +18,7 @@ package dev.xorcery.alchemy.log.transmute;
 import com.fasterxml.jackson.databind.JsonNode;
 import dev.xorcery.alchemy.jar.JarConfiguration;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import dev.xorcery.alchemy.jar.Transmute;
 import dev.xorcery.alchemy.jar.TransmuteJar;
 import dev.xorcery.configuration.Configuration;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
@@ -46,7 +47,7 @@ public class LogTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         Logger logger = loggerContext.getLogger(jarConfiguration.getName().or(transmutationConfiguration::getName).or(()->configuration.getString("jars.log.transmute.logger")).orElse("log"));
         Level level = Level.toLevel(jarConfiguration.getString("level").orElseGet(()->configuration.getString("jars.log.transmute.level").orElse("info")));
         return (flux,context)->flux.doOnNext(json -> logger.log(level, toMessage(json)));

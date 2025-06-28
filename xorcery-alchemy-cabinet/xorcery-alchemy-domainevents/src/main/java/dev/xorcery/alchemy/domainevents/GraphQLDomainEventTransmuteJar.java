@@ -19,10 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import dev.xorcery.alchemy.jar.JarConfiguration;
-import dev.xorcery.alchemy.jar.JarException;
-import dev.xorcery.alchemy.jar.TransmutationConfiguration;
-import dev.xorcery.alchemy.jar.TransmuteJar;
+import dev.xorcery.alchemy.jar.*;
 import dev.xorcery.domainevents.api.JsonDomainEvent;
 import dev.xorcery.domainevents.api.Value;
 import dev.xorcery.json.JsonElement;
@@ -51,7 +48,7 @@ public class GraphQLDomainEventTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         ObjectNode metadataConfig = jarConfiguration.configuration().getConfiguration("metadata").json();
         return (flux, context) -> flux.handle((item, sink) -> {
             try {

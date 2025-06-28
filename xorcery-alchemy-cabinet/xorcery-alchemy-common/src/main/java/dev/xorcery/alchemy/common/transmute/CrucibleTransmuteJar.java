@@ -21,6 +21,7 @@ import dev.xorcery.alchemy.crucible.Crucible;
 import dev.xorcery.alchemy.crucible.Transmutations;
 import dev.xorcery.alchemy.jar.JarConfiguration;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import dev.xorcery.alchemy.jar.Transmute;
 import dev.xorcery.alchemy.jar.TransmuteJar;
 import dev.xorcery.configuration.Configuration;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
@@ -45,7 +46,7 @@ public class CrucibleTransmuteJar
     }
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         return (flux, context) -> flux.handle((item, sink) ->
         {
             try {

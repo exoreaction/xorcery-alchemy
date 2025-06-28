@@ -40,7 +40,7 @@ public class YamlFileTransmuteJar
         implements TransmuteJar {
 
     @Override
-    public BiFunction<Flux<MetadataJsonNode<JsonNode>>, ContextView, Publisher<MetadataJsonNode<JsonNode>>> newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         return (flux, context) ->
         {
             URI fileUrl = jarConfiguration.getURI(JarContext.resultUrl).orElse(null);
