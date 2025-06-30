@@ -16,18 +16,90 @@
 package dev.xorcery.alchemy.file.csv.source;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import dev.xorcery.alchemy.jar.JarConfiguration;
-import dev.xorcery.alchemy.jar.SourceJar;
-import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.opencsv.*;
+import dev.xorcery.alchemy.jar.*;
+import dev.xorcery.collections.Element;
+import dev.xorcery.metadata.Metadata;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import org.jvnet.hk2.annotations.Service;
 import reactor.core.publisher.Flux;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 @Service(name = "csv", metadata = "enabled=jars.enabled")
 public class CSVFileSourceJar
         implements SourceJar {
     @Override
-    public Flux<MetadataJsonNode<JsonNode>> newSource(JarConfiguration configuration, TransmutationConfiguration transmutationConfiguration) {
-        return Flux.from(new CSVPublisher(configuration, transmutationConfiguration));
+    public Flux<MetadataJsonNode<JsonNode>> newSource(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+        try {
+            Object sourceUrl = jarConfiguration.get(JarContext.sourceUrl)
+                    .orElseThrow(Element.missing(JarContext.sourceUrl));
+            URL csvResource = sourceUrl instanceof URL url ? url : new URL(sourceUrl.toString());
+            String csvResourceUrl = csvResource.toExternalForm();
+
+            CSVParserBuilder parserBuilder = new CSVParserBuilder();
+
+            jarConfiguration.getString("escape").ifPresent(c -> parserBuilder.withEscapeChar(c.charAt(0)));
+            jarConfiguration.getString("separator").ifPresent(c -> parserBuilder.withSeparator(c.charAt(0)));
+            jarConfiguration.getString("quote").ifPresent(c -> parserBuilder.withQuoteChar(c.charAt(0)));
+            CSVParser csvParser = parserBuilder.build();
+
+            return Flux.push(sink -> {
+
+                try {
+                    if (jarConfiguration.getBoolean("headers").orElse(false)) {
+                        CSVReaderHeaderAware csvReader = new CSVReaderHeaderAwareBuilder(new BufferedReader(new InputStreamReader(csvResource.openStream(), StandardCharsets.UTF_8)))
+                                .withCSVParser(csvParser)
+                                .build();
+                        Callable<MetadataJsonNode<JsonNode>> itemReader = () ->
+                        {
+                            Map<String, String> map = csvReader.readMap();
+                            if (map == null)
+                                return null;
+                            ObjectNode data = JsonNodeFactory.instance.objectNode();
+                            map.forEach(data::put);
+                            return new MetadataJsonNode<>(new Metadata.Builder()
+                                    .add(StandardMetadata.sourceUrl, csvResourceUrl)
+                                    .build(), data);
+                        };
+                        RowReaderStreamer streamer = new RowReaderStreamer(sink, csvReader, itemReader);
+                        sink.onDispose(streamer);
+                        sink.onRequest(streamer::request);
+                    } else {
+                        CSVReader csvReader = new CSVReaderBuilder(new BufferedReader(new InputStreamReader(csvResource.openStream(), StandardCharsets.UTF_8)))
+                                .withCSVParser(csvParser)
+                                .build();
+                        Callable<MetadataJsonNode<JsonNode>> itemReader = () ->
+                        {
+                            String[] row = csvReader.readNext();
+                            if (row == null)
+                                return null;
+                            ArrayNode data = JsonNodeFactory.instance.arrayNode();
+                            for (String column : row) {
+                                data.add(column);
+                            }
+                            return new MetadataJsonNode<>(new Metadata.Builder()
+                                    .add(StandardMetadata.sourceUrl, csvResourceUrl)
+                                    .build(), data);
+                        };
+                        RowReaderStreamer streamer = new RowReaderStreamer(sink, csvReader, itemReader);
+                        sink.onDispose(streamer);
+                        sink.onRequest(streamer::request);
+                    }
+                } catch (Throwable e) {
+                    sink.error(e);
+                }
+            });
+        } catch (Throwable e) {
+            return Flux.error(e);
+        }
     }
 }

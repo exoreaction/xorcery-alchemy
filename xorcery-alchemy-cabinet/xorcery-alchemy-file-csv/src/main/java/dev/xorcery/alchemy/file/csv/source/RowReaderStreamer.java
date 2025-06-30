@@ -20,33 +20,33 @@ import com.opencsv.CSVReader;
 import dev.xorcery.reactivestreams.api.ContextViewElement;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import dev.xorcery.reactivestreams.api.ReactiveStreamsContext;
-import org.reactivestreams.Subscription;
-import reactor.core.CoreSubscriber;
+import reactor.core.Disposable;
+import reactor.core.publisher.FluxSink;
 
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
 class RowReaderStreamer
-        implements Subscription {
+        implements Disposable {
     private final CSVReader csvReader;
     private final Callable<MetadataJsonNode<JsonNode>> itemReader;
-    private final CoreSubscriber<? super MetadataJsonNode<JsonNode>> subscriber;
+    private final FluxSink<? super MetadataJsonNode<JsonNode>> sink;
     private long streamPosition = 0;
 
-    public RowReaderStreamer(CoreSubscriber<? super MetadataJsonNode<JsonNode>> subscriber, CSVReader csvReader, Callable<MetadataJsonNode<JsonNode>> itemReader) {
-        this.subscriber = subscriber;
+    public RowReaderStreamer(FluxSink<? super MetadataJsonNode<JsonNode>> sink, CSVReader csvReader, Callable<MetadataJsonNode<JsonNode>> itemReader) {
+        this.sink = sink;
         this.csvReader = csvReader;
         this.itemReader = itemReader;
 
         // Skip until position
-        long skip = new ContextViewElement(subscriber.currentContext())
+        long skip = new ContextViewElement(sink.contextView())
                 .getLong(ReactiveStreamsContext.streamPosition)
                 .map(pos -> pos + 1).orElse(0L);
         try {
             csvReader.skip((int) skip);
             streamPosition = skip;
         } catch (IOException e) {
-            subscriber.onError(e);
+            sink.error(e);
         }
     }
 
@@ -59,29 +59,23 @@ class RowReaderStreamer
             while (request-- > 0 && (item = itemReader.call()) != null) {
                 item.metadata().json().put("timestamp", System.currentTimeMillis());
                 item.metadata().json().put("streamPosition", streamPosition++);
-                subscriber.onNext(item);
+                sink.next(item);
             }
 
             if (item == null) {
-                csvReader.close();
-                subscriber.onComplete();
+                sink.complete();
             }
         } catch (Throwable e) {
-            try {
-                csvReader.close();
-            } catch (IOException ex) {
-                // Ignore
-            }
-            subscriber.onError(e);
+            sink.error(e);
         }
     }
 
     @Override
-    public void cancel() {
+    public void dispose() {
         try {
             csvReader.close();
         } catch (IOException e) {
-            subscriber.onError(e);
+            // Ignore
         }
     }
 }

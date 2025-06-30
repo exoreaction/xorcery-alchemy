@@ -1,0 +1,6 @@
+jars:
+  sourcejars:
+  - jar: parquet
+    name: parquet
+    enabled: "{{ jars.enabled }}"
+    sourceUrl: null

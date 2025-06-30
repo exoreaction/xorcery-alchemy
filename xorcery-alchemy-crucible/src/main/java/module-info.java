@@ -25,4 +25,6 @@ open module xorcery.alchemy.crucible {
     requires org.glassfish.hk2.runlevel;
     requires org.glassfish.hk2.api;
     requires org.slf4j;
+    requires java.logging;
+    requires org.apache.logging.log4j.core;
 }

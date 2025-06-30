@@ -7,6 +7,14 @@
     <version>0.2.15-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
+
     <scm>
         <developerConnection>scm:git:ssh://git@github.com/exoreaction/xorcery-alchemy.git</developerConnection>
         <connection>scm:git:https://github.com/exoreaction/xorcery-alchemy.git</connection>

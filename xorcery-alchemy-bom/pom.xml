@@ -53,6 +53,11 @@
             </dependency>
             <dependency>
                 <groupId>dev.xorcery.alchemy</groupId>
+                <artifactId>xorcery-alchemy-file-parquet</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.xorcery.alchemy</groupId>
                 <artifactId>xorcery-alchemy-file-excel</artifactId>
                 <version>${project.version}</version>
             </dependency>

@@ -47,6 +47,10 @@
         </dependency>
         <dependency>
             <groupId>dev.xorcery.alchemy</groupId>
+            <artifactId>xorcery-alchemy-file-parquet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dev.xorcery.alchemy</groupId>
             <artifactId>xorcery-alchemy-file-excel</artifactId>
         </dependency>
         <dependency>

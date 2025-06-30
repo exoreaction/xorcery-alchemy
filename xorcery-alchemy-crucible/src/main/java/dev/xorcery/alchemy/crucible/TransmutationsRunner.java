@@ -17,6 +17,7 @@ package dev.xorcery.alchemy.crucible;
 
 import dev.xorcery.configuration.Configuration;
 import jakarta.inject.Inject;
+import org.apache.logging.log4j.Logger;
 import org.glassfish.hk2.runlevel.RunLevel;
 import org.jvnet.hk2.annotations.Service;
 
@@ -31,15 +32,20 @@ public class TransmutationsRunner {
     private final CompletableFuture<Void> done;
 
     @Inject
-    public TransmutationsRunner(Configuration configuration, Transmutations transmutations, Crucible crucible) {
-        this(TransmutationsConfiguration.get(configuration), transmutations, crucible);
+    public TransmutationsRunner(Configuration configuration, Transmutations transmutations, Crucible crucible, Logger logger) {
+        this(TransmutationsConfiguration.get(configuration), transmutations, crucible, logger);
     }
 
-    public TransmutationsRunner(TransmutationsConfiguration transmutationsConfiguration, Transmutations transmutations, Crucible crucible) {
+    public TransmutationsRunner(TransmutationsConfiguration transmutationsConfiguration, Transmutations transmutations, Crucible crucible, Logger logger) {
         List<CompletableFuture<Void>> results = new ArrayList<>();
         transmutationsConfiguration.getTransmutations().forEach(transmutation -> {
             if (transmutation.isEnabled()) {
-                results.add(crucible.addTransmutation(transmutations.newTransmutation(transmutation)));
+                CompletableFuture<Void> result = crucible.addTransmutation(transmutations.newTransmutation(transmutation));
+                result.exceptionally(t ->{
+                    logger.error("Transmutation failed:"+t);
+                    return null;
+                });
+                results.add(result);
             }
         });
         done = CompletableFuture.allOf(results.toArray(new CompletableFuture[0]));

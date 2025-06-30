@@ -32,11 +32,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.release>17</maven.compiler.release>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <xorcery.version>0.162.0</xorcery.version>
         <hk2.version>3.1.1</hk2.version>
         <asm.version>9.8</asm.version>
+        <jackson.version>2.19.1</jackson.version>
     </properties>
 
     <dependencies>
@@ -74,6 +78,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -85,6 +96,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.14.0</version>
                     <configuration>
+                        <source>21</source>
+                        <target>21</target>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.glassfish.hk2</groupId>

@@ -35,6 +35,7 @@
         <module>xorcery-alchemy-file-yaml</module>
         <module>xorcery-alchemy-file-csv</module>
         <module>xorcery-alchemy-file-excel</module>
+        <module>xorcery-alchemy-file-parquet</module>
 
         <module>xorcery-alchemy-jslt</module>
         <module>xorcery-alchemy-script</module>

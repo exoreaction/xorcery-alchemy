@@ -21,26 +21,26 @@ import dev.xorcery.alchemy.jar.StandardMetadata;
 import dev.xorcery.reactivestreams.api.ContextViewElement;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import org.dhatim.fastexcel.reader.ReadableWorkbook;
-import org.reactivestreams.Subscription;
-import reactor.core.CoreSubscriber;
+import reactor.core.Disposable;
+import reactor.core.publisher.FluxSink;
 
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
 public class RowReaderStreamer
-        implements Subscription {
+        implements Disposable {
     private final ReadableWorkbook workBook;
     private final Callable<MetadataJsonNode<JsonNode>> itemReader;
-    private final CoreSubscriber<? super MetadataJsonNode<JsonNode>> subscriber;
+    private final FluxSink<? super MetadataJsonNode<JsonNode>> sink;
     private long streamPosition = 0;
 
-    public RowReaderStreamer(CoreSubscriber<? super MetadataJsonNode<JsonNode>> subscriber, ReadableWorkbook workBook, Callable<MetadataJsonNode<JsonNode>> itemReader) {
-        this.subscriber = subscriber;
+    public RowReaderStreamer(FluxSink<? super MetadataJsonNode<JsonNode>> sink, ReadableWorkbook workBook, Callable<MetadataJsonNode<JsonNode>> itemReader) {
+        this.sink = sink;
         this.workBook = workBook;
         this.itemReader = itemReader;
 
         // Skip until position
-        long skip = new ContextViewElement(subscriber.currentContext())
+        long skip = new ContextViewElement(sink.currentContext())
                 .getLong(JarContext.streamPosition)
                 .map(pos -> pos + 1).orElse(0L);
         try {
@@ -49,7 +49,7 @@ public class RowReaderStreamer
             }
             streamPosition = skip;
         } catch (Throwable e) {
-            subscriber.onError(e);
+            sink.error(e);
         }
     }
 
@@ -62,30 +62,23 @@ public class RowReaderStreamer
             while (request-- > 0 && (item = itemReader.call()) != null) {
                 item.metadata().json().put(StandardMetadata.timestamp.name(), System.currentTimeMillis());
                 item.metadata().json().put(StandardMetadata.streamPosition.name(), streamPosition++);
-                subscriber.onNext(item);
+                sink.next(item);
             }
 
             if (item == null) {
-                workBook.close();
-                subscriber.onComplete();
+                sink.complete();
             }
         } catch (Throwable e) {
-            try {
-                workBook.close();
-            } catch (IOException ex) {
-                // Ignore
-            }
-            subscriber.onError(e);
+            sink.error(e);
         }
     }
 
     @Override
-    public void cancel() {
+    public void dispose() {
         try {
             workBook.close();
         } catch (IOException e) {
-            subscriber.onError(e);
+            // Ignore
         }
     }
-
 }

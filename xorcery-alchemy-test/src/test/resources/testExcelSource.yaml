@@ -1,0 +1,16 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "testexcelsource"
+  source:
+    jar: excel
+    name: "readexcelfile"
+    sourceUrl: "resource://taxi_zones.xlsx"
+  transmutes:
+  - name: "logitem"
+    jar: script
+    bindings:
+      count: 0
+    next: |+
+      bindings.count +=1;
+    complete:
+      print('count:'+bindings.count);
