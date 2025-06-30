@@ -56,5 +56,15 @@
             <name>Cantara Snapshot Repository</name>
             <url>https://mvnrepo.cantara.no/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>cantara-catalystone-releases</id>
+            <name>Cantara CatalystOne Release Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/catalystonereleases/</url>
+        </repository>
+        <repository>
+            <id>cantara-catalystone-snapshots</id>
+            <name>Cantara CatalystOne Snapshot Repository</name>
+            <url>https://mvnrepo.cantara.no/content/repositories/catalystonesnapshots/</url>
+        </repository>
     </repositories>
 </project>
