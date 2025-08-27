@@ -47,28 +47,28 @@ Xorcery Alchemy is a powerful data transformation and processing framework desig
 ┌─────────────────────────────────────────────────────────────┐
 │                    Application Layer                        │
 ├─────────────────────────────────────────────────────────────┤
-│                  Xorcery Alchemy Cabinet                   │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
-│  │ File Format │  │Integration  │  │ Transformation      │ │
-│  │ Processors  │  │ Modules     │  │ Engines             │ │
-│  │ • CSV       │  │ • Neo4j     │  │ • JSLT              │ │
-│  │ • Excel     │  │ • OpenSearch│  │ • JavaScript        │ │
-│  │ • YAML      │  │ • Events    │  │ • Common Utils      │ │
-│  │ • Parquet   │  │             │  │                     │ │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘ │
+│                  Xorcery Alchemy Cabinet                    │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
+│  │ File Format │  │Integration  │  │ Transformation      │  │
+│  │ Processors  │  │ Modules     │  │ Engines             │  │
+│  │ • CSV       │  │ • Neo4j     │  │ • JSLT              │  │
+│  │ • Excel     │  │ • OpenSearch│  │ • JavaScript        │  │
+│  │ • YAML      │  │ • Events    │  │ • Common Utils      │  │
+│  │ • Parquet   │  │             │  │                     │  │
+│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
 ├─────────────────────────────────────────────────────────────┤
-│                  Xorcery Alchemy Crucible                  │
+│                  Xorcery Alchemy Crucible                   │
 │              (Main Processing Engine)                       │
 ├─────────────────────────────────────────────────────────────┤
 │                   Xorcery Framework                         │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
-│  │ Core        │  │ Dependency  │  │ Observability       │ │
-│  │ Infrastructure│ │ Injection   │  │ • OpenTelemetry     │ │
-│  │             │  │ (HK2)       │  │ • Logging           │ │
-│  │             │  │             │  │ • Metrics           │ │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘ │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
+│  │ Core        │  │ Dependency  │  │ Observability       │  │
+│  │ Libraries   │  │ Injection   │  │ • OpenTelemetry     │  │
+│  │             │  │ (HK2)       │  │ • Logging           │  │
+│  │             │  │             │  │ • Metrics           │  │
+│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
 ├─────────────────────────────────────────────────────────────┤
-│                      Java 21 Runtime                       │
+│                      Java Runtime                           │
 └─────────────────────────────────────────────────────────────┘
 ```
 
