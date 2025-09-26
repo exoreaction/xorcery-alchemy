@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-module xorcery.alchemy.file.yaml {
-    exports dev.xorcery.alchemy.file.yaml.source;
-    exports dev.xorcery.alchemy.file.yaml.transmute;
+module xorcery.alchemy.file.json {
+    exports dev.xorcery.alchemy.file.json.source;
+    exports dev.xorcery.alchemy.file.json.transmute;
 
     requires xorcery.alchemy.jar;
     requires xorcery.reactivestreams.extras;
@@ -23,5 +23,4 @@ module xorcery.alchemy.file.yaml {
     requires xorcery.reactivestreams.api;
     requires org.glassfish.hk2.api;
     requires jakarta.inject;
-
 }

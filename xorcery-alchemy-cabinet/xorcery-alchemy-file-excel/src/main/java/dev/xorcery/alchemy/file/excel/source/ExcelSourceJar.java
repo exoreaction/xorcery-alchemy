@@ -23,6 +23,8 @@ import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import org.dhatim.fastexcel.reader.*;
 import org.jvnet.hk2.annotations.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,9 +39,11 @@ import java.util.concurrent.Callable;
 public class ExcelSourceJar
         implements SourceJar
 {
+    private static final Scheduler scheduler = Schedulers.newSingle("Excel");
+
     @Override
     public Flux<MetadataJsonNode<JsonNode>> newSource(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
-        return Flux.push(sink ->{
+        return Flux.<MetadataJsonNode<JsonNode>>create(sink ->{
             try {
                 Object sourceUrl = jarConfiguration.get(JarContext.sourceUrl)
                         .orElseThrow(Configuration.missing(JarContext.sourceUrl.name()));
@@ -80,6 +84,6 @@ public class ExcelSourceJar
             } catch (Throwable e) {
                 sink.error(new JarException(jarConfiguration, transmutationConfiguration, "Excel parsing failed", e));
             }
-        });
+        }).subscribeOn(scheduler, true);
     }
 }

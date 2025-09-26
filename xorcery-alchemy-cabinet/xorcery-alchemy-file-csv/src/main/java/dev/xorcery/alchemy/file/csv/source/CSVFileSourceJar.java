@@ -26,6 +26,8 @@ import dev.xorcery.metadata.Metadata;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import org.jvnet.hk2.annotations.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -37,6 +39,9 @@ import java.util.concurrent.Callable;
 @Service(name = "csv", metadata = "enabled=jars.enabled")
 public class CSVFileSourceJar
         implements SourceJar {
+
+    private static final Scheduler scheduler = Schedulers.newSingle("CSV");
+
     @Override
     public Flux<MetadataJsonNode<JsonNode>> newSource(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
         try {
@@ -52,7 +57,7 @@ public class CSVFileSourceJar
             jarConfiguration.getString("quote").ifPresent(c -> parserBuilder.withQuoteChar(c.charAt(0)));
             CSVParser csvParser = parserBuilder.build();
 
-            return Flux.push(sink -> {
+            return Flux.<MetadataJsonNode<JsonNode>>create(sink -> {
 
                 try {
                     if (jarConfiguration.getBoolean("headers").orElse(false)) {
@@ -97,7 +102,7 @@ public class CSVFileSourceJar
                 } catch (Throwable e) {
                     sink.error(e);
                 }
-            });
+            }).subscribeOn(scheduler, true);
         } catch (Throwable e) {
             return Flux.error(e);
         }

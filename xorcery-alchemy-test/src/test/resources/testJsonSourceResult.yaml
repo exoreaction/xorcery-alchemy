@@ -1,0 +1,8 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- source:
+    jar: json
+    sourceUrl: "resource://jsonsource.json"
+  transmutes:
+  - jar: json
+    resultUrl: "file:///{{ instance.home }}/jsonresult.json"

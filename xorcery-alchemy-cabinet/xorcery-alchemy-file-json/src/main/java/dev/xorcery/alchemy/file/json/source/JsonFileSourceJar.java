@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xorcery.alchemy.file.yaml.source;
+package dev.xorcery.alchemy.file.json.source;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
@@ -24,17 +24,18 @@ import dev.xorcery.alchemy.jar.SourceJar;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
 import dev.xorcery.metadata.Metadata;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
+import dev.xorcery.reactivestreams.extras.publishers.JsonPublisher;
 import dev.xorcery.reactivestreams.extras.publishers.ResourcePublisherContext;
 import org.jvnet.hk2.annotations.Service;
 import reactor.core.publisher.Flux;
 
-@Service(name = "yaml", metadata = "enabled=jars.enabled")
-public class YamlFileSourceJar
+@Service(name = "json", metadata = "enabled=jars.enabled")
+public class JsonFileSourceJar
         implements SourceJar {
 
     @Override
     public Flux<MetadataJsonNode<JsonNode>> newSource(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
-        return Flux.from(new YamlPublisher<JsonNode>(JsonNode.class))
+        return Flux.from(new JsonPublisher<JsonNode>(JsonNode.class))
                 .contextCapture()
                 .contextWrite(context ->
                         jarConfiguration.getString(JarContext.sourceUrl).map(url ->

@@ -256,6 +256,31 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml",
+                  "const" : "yaml"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "sourceUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
                   "default" : "parquet",
                   "description" : "Default: parquet"
                 },
@@ -689,6 +714,31 @@
                   "type" : "string",
                   "default" : "excel",
                   "description" : "Default: excel"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "resultUrl" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml",
+                  "const" : "yaml"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "yaml",
+                  "description" : "Default: yaml"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],

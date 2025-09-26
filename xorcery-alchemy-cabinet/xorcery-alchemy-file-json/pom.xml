@@ -20,38 +20,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dev.xorcery.alchemy</groupId>
-        <artifactId>xorcery-alchemy-parent</artifactId>
-        <version>0.3.2-SNAPSHOT</version>
-        <relativePath>../xorcery-alchemy-parent</relativePath>
+        <artifactId>xorcery-alchemy-cabinet</artifactId>
+        <version>0.3.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>xorcery-alchemy-cabinet</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>xorcery-alchemy-common</module>
-        <module>xorcery-alchemy-log</module>
-
-        <module>xorcery-alchemy-file-json</module>
-        <module>xorcery-alchemy-file-yaml</module>
-        <module>xorcery-alchemy-file-csv</module>
-        <module>xorcery-alchemy-file-excel</module>
-        <module>xorcery-alchemy-file-parquet</module>
-
-        <module>xorcery-alchemy-jslt</module>
-        <module>xorcery-alchemy-script</module>
-
-        <module>xorcery-alchemy-neo4jprojection</module>
-        <module>xorcery-alchemy-opensearch</module>
-        <module>xorcery-alchemy-domainevents</module>
-
-        <module>xorcery-alchemy-cabinet-all</module>
-    </modules>
+    <artifactId>xorcery-alchemy-file-json</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>dev.xorcery.alchemy</groupId>
-            <artifactId>xorcery-alchemy-crucible</artifactId>
+            <groupId>dev.xorcery</groupId>
+            <artifactId>xorcery-reactivestreams-extras</artifactId>
         </dependency>
     </dependencies>
+
+
 </project>

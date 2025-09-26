@@ -43,6 +43,10 @@
         </dependency>
         <dependency>
             <groupId>dev.xorcery.alchemy</groupId>
+            <artifactId>xorcery-alchemy-file-json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dev.xorcery.alchemy</groupId>
             <artifactId>xorcery-alchemy-file-csv</artifactId>
         </dependency>
         <dependency>
