@@ -22,7 +22,7 @@
         <groupId>dev.xorcery.alchemy</groupId>
         <artifactId>xorcery-alchemy-parent</artifactId>
         <relativePath>../xorcery-alchemy-parent</relativePath>
-        <version>0.5.0</version>
+        <version>0.5.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>xorcery-alchemy-jar</artifactId>
