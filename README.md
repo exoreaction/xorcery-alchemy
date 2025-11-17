@@ -131,5 +131,5 @@ This project is actively maintained by eXOReaction AS.
 
 ## Support
 
-For support and questions, please open an issue in the GitHub repository.
+For support and questions, please open an issue in the GitHub repository..
 ```
