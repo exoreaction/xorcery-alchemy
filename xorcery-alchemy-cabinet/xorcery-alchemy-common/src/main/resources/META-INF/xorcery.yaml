@@ -18,6 +18,11 @@ jars:
       path: null
       filter: "*.*"
 
+    - jar: transmutation
+      name: transmutation
+      enabled: "{{ jars.enabled }}"
+      transmutation: null
+
   transmutejars:
     - jar: crucible
       name: crucible

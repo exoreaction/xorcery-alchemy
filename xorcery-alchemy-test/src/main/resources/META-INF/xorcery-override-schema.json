@@ -189,6 +189,31 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
+                  "default" : "transmutation",
+                  "description" : "Default: transmutation"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "transmutation",
+                  "description" : "Default: transmutation"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "transmutation" : {
+                  "default" : null,
+                  "description" : "Default: null",
+                  "type" : "#/$defs/transmutations/items"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
                   "default" : "csv",
                   "description" : "Default: csv",
                   "const" : "csv"

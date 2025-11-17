@@ -1,0 +1,27 @@
+$schema: META-INF/xorcery-test-override-schema.json
+transmutations:
+- name: "transmutationAsSource"
+  source:
+    jar: concat
+    sources:
+    - jar: transmutation
+      transmutation:
+        source:
+          jar: yaml
+          sourceUrl: "resource://foo.yaml"
+        transmutes:
+          - jar: rename
+            data:
+              foox: "foo"
+    - jar: transmutation
+      transmutation:
+        source:
+          jar: yaml
+          sourceUrl: "resource://foo.yaml"
+        transmutes:
+          - jar: rename
+            data:
+              fooy: "foo"
+
+  transmutes:
+  - jar: log
