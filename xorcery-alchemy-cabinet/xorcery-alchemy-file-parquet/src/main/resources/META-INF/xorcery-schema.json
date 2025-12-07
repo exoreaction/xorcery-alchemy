@@ -22,7 +22,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "parquet",
-                  "description" : "Default: parquet"
+                  "description" : "Default: parquet",
+                  "const" : "parquet"
                 },
                 "name" : {
                   "type" : "string",

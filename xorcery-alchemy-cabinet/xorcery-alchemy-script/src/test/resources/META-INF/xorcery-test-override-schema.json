@@ -114,16 +114,8 @@
       }
     },
     "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
       "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
         "sourcejars" : {
-          "type" : [ "array", "string" ],
           "items" : {
             "anyOf" : [ {
               "type" : "object",
@@ -160,10 +152,10 @@
                 }
               }
             } ]
-          }
+          },
+          "type" : [ "array", "string" ]
         },
         "transmutejars" : {
-          "type" : [ "array", "string" ],
           "items" : {
             "anyOf" : [ {
               "type" : "object",
@@ -208,9 +200,17 @@
                 }
               }
             } ]
-          }
+          },
+          "type" : [ "array", "string" ]
+        },
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
         }
-      }
+      },
+      "type" : "object",
+      "additionalProperties" : false
     },
     "instance" : {
       "type" : "object",

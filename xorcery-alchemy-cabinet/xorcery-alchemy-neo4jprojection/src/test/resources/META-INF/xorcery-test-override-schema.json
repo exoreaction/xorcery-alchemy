@@ -123,77 +123,77 @@
       }
     },
     "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
       "properties" : {
+        "sourcejars" : {
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection",
+                  "const" : "projection"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "projectionId" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          },
+          "type" : [ "array", "string" ]
+        },
+        "transmutejars" : {
+          "items" : {
+            "anyOf" : [ {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection",
+                  "const" : "projection"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "projection",
+                  "description" : "Default: projection"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "projectionId" : {
+                  "default" : null,
+                  "description" : "Default: null"
+                }
+              }
+            } ]
+          },
+          "type" : [ "array", "string" ]
+        },
         "enabled" : {
           "type" : [ "boolean", "string" ],
           "default" : "{{ defaults.enabled }}",
           "description" : "Default: {{ defaults.enabled }} (true)"
-        },
-        "sourcejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "projection",
-                  "description" : "Default: projection",
-                  "const" : "projection"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "projection",
-                  "description" : "Default: projection"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "projectionId" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                }
-              }
-            } ]
-          }
-        },
-        "transmutejars" : {
-          "type" : [ "array", "string" ],
-          "items" : {
-            "anyOf" : [ {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "projection",
-                  "description" : "Default: projection",
-                  "const" : "projection"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "projection",
-                  "description" : "Default: projection"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "projectionId" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                }
-              }
-            } ]
-          }
         }
-      }
+      },
+      "type" : "object",
+      "additionalProperties" : false
     },
     "instance" : {
       "type" : "object",

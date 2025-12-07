@@ -64,6 +64,20 @@
           }
         }
       }
+    },
+    "jars": {
+      "properties": {
+        "sourcejars": {
+          "items": {
+            "anyOf": []
+          }
+        },
+        "transmutejars": {
+          "items": {
+            "anyOf": []
+          }
+        }
+      }
     }
   }
 }

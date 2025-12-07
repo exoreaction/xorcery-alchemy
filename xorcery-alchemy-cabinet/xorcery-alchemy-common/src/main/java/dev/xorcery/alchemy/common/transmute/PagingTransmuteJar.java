@@ -13,33 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.xorcery.alchemy.common.source;
+package dev.xorcery.alchemy.common.transmute;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import dev.xorcery.alchemy.crucible.Transmutations;
 import dev.xorcery.alchemy.jar.JarConfiguration;
-import dev.xorcery.alchemy.jar.SourceJar;
 import dev.xorcery.alchemy.jar.TransmutationConfiguration;
-import dev.xorcery.reactivestreams.api.MetadataJsonNode;
+import dev.xorcery.alchemy.jar.Transmute;
+import dev.xorcery.alchemy.jar.TransmuteJar;
 import jakarta.inject.Inject;
 import org.jvnet.hk2.annotations.Service;
-import reactor.core.publisher.Flux;
 
-@Service(name = "transmutation", metadata = "enabled=jars.enabled")
-public class TransmutationSourceJar
-        implements SourceJar {
+@Service(name = "paging", metadata = "enabled=jars.enabled")
+public class PagingTransmuteJar
+        implements TransmuteJar {
     private final Transmutations transmutations;
 
     @Inject
-    public TransmutationSourceJar(Transmutations transmutations) {
+    public PagingTransmuteJar(Transmutations transmutations) {
         this.transmutations = transmutations;
     }
 
     @Override
-    public Flux<MetadataJsonNode<JsonNode>> newSource(JarConfiguration configuration, TransmutationConfiguration transmutationConfiguration) {
-        TransmutationConfiguration sourceTransmutationConfiguration = new TransmutationConfiguration(configuration.configuration().getConfiguration("transmutation"));
-        return (sourceTransmutationConfiguration.isEnabled())
-                ? transmutations.newTransmutation(sourceTransmutationConfiguration).getFlux()
-                : Flux.empty();
+    public Transmute newTransmute(JarConfiguration jarConfiguration, TransmutationConfiguration transmutationConfiguration) {
+        return (flux, context) -> {
+            flux = jarConfiguration.getLong("skip").map(flux::skip).orElse(flux);
+            flux = jarConfiguration.getLong("limit").map(flux::take).orElse(flux);
+            return flux;
+        };
     }
 }

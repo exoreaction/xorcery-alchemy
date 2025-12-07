@@ -21,7 +21,7 @@ jars:
     - jar: transmutation
       name: transmutation
       enabled: "{{ jars.enabled }}"
-      transmutation: null
+      transmutation: {}
 
   transmutejars:
     - jar: crucible
@@ -41,6 +41,12 @@ jars:
       enabled: "{{ jars.enabled }}"
       transmute: null
       transmutes: []
+
+    - jar: paging
+      name: paging
+      enabled: "{{ jars.enabled }}"
+      skip: null
+      limit: null
 
     - jar: rename
       name: rename

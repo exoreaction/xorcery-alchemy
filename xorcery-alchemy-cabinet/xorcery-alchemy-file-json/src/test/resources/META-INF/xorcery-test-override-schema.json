@@ -117,16 +117,8 @@
       }
     },
     "jars" : {
-      "type" : "object",
-      "additionalProperties" : false,
       "properties" : {
-        "enabled" : {
-          "type" : [ "boolean", "string" ],
-          "default" : "{{ defaults.enabled }}",
-          "description" : "Default: {{ defaults.enabled }} (true)"
-        },
         "sourcejars" : {
-          "type" : [ "array", "string" ],
           "items" : {
             "anyOf" : [ {
               "type" : "object",
@@ -134,14 +126,14 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml",
-                  "const" : "yaml"
+                  "default" : "json",
+                  "description" : "Default: json",
+                  "const" : "json"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "default" : "json",
+                  "description" : "Default: json"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
@@ -154,10 +146,10 @@
                 }
               }
             } ]
-          }
+          },
+          "type" : [ "array", "string" ]
         },
         "transmutejars" : {
-          "type" : [ "array", "string" ],
           "items" : {
             "anyOf" : [ {
               "type" : "object",
@@ -165,14 +157,14 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml",
-                  "const" : "yaml"
+                  "default" : "json",
+                  "description" : "Default: json",
+                  "const" : "json"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "default" : "json",
+                  "description" : "Default: json"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
@@ -185,9 +177,17 @@
                 }
               }
             } ]
-          }
+          },
+          "type" : [ "array", "string" ]
+        },
+        "enabled" : {
+          "type" : [ "boolean", "string" ],
+          "default" : "{{ defaults.enabled }}",
+          "description" : "Default: {{ defaults.enabled }} (true)"
         }
-      }
+      },
+      "type" : "object",
+      "additionalProperties" : false
     },
     "instance" : {
       "type" : "object",

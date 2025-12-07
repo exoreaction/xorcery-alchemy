@@ -72,10 +72,16 @@
           "description" : "Default: {{ defaults.enabled }} (true)"
         },
         "sourcejars" : {
-          "type" : [ "array", "string" ]
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ ]
+          }
         },
         "transmutejars" : {
-          "type" : [ "array", "string" ]
+          "type" : [ "array", "string" ],
+          "items" : {
+            "anyOf" : [ ]
+          }
         }
       }
     },

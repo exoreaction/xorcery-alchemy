@@ -102,13 +102,6 @@
                   "type" : "string",
                   "default" : "*.*",
                   "description" : "Default: *.*"
-                },
-                "source" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "sources" : {
-                  "type" : [ "array", "string" ]
                 }
               }
             }, {
@@ -118,7 +111,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "transmutation",
-                  "description" : "Default: transmutation"
+                  "description" : "Default: transmutation",
+                  "const" : "transmutation"
                 },
                 "name" : {
                   "type" : "string",
@@ -131,9 +125,7 @@
                   "description" : "Default: true"
                 },
                 "transmutation" : {
-                  "default" : null,
-                  "description" : "Default: null",
-                  "type" : "#/$defs/transmutations/items"
+                  "$ref" : "#/$defs/transmutations/items"
                 }
               }
             } ]
@@ -149,6 +141,27 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "crucible",
+                  "description" : "Default: crucible",
+                  "const" : "crucible"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "crucible",
+                  "description" : "Default: crucible"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                }
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "flatten",
                   "description" : "Default: flatten",
                   "const" : "flatten"
                 },
@@ -169,34 +182,19 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "flatten",
-                  "description" : "Default: rename",
-                  "const" : "rename"
+                  "default" : "noop",
+                  "description" : "Default: noop",
+                  "const" : "noop"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "rename",
-                  "description" : "Default: rename"
+                  "default" : "noop",
+                  "description" : "Default: noop"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
                   "default" : true,
                   "description" : "Default: true"
-                },
-                "metadata" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
-                "data" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
-                "context" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
                 }
               }
             }, {
@@ -221,17 +219,46 @@
                 },
                 "transmute" : {
                   "default" : null,
-                  "description" : "Name of transmute to use",
-                  "type" : "string"
+                  "description" : "Default: null"
                 },
                 "transmutes" : {
                   "type" : [ "array", "string" ],
                   "items" : {
-                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
+                    "$ref" : "#/$defs/transmutejars/items"
                   }
                 }
-              },
-              "required" : [ "transmute" ]
+              }
+            }, {
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "jar" : {
+                  "type" : "string",
+                  "default" : "paging",
+                  "description" : "Default: paging",
+                  "const" : "paging"
+                },
+                "name" : {
+                  "type" : "string",
+                  "default" : "paging",
+                  "description" : "Default: paging"
+                },
+                "enabled" : {
+                  "type" : [ "boolean", "string" ],
+                  "default" : true,
+                  "description" : "Default: true"
+                },
+                "skip" : {
+                  "default" : null,
+                  "description" : "Default: null",
+                  "type" : [ "integer", "string" ]
+                },
+                "limit" : {
+                  "default" : null,
+                  "description" : "Default: null",
+                  "type" : [ "integer", "string" ]
+                }
+              }
             }, {
               "type" : "object",
               "additionalProperties" : false,
@@ -239,28 +266,18 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "rename",
-                  "description" : "Default: transmutes",
-                  "const" : "transmutes"
+                  "description" : "Default: rename",
+                  "const" : "rename"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "transmutes",
-                  "description" : "Default: transmutes"
+                  "default" : "rename",
+                  "description" : "Default: rename"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
                   "default" : true,
                   "description" : "Default: true"
-                },
-                "transmute" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "transmutes" : {
-                  "type" : [ "array", "string" ],
-                  "items" : {
-                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
-                  }
                 },
                 "metadata" : {
                   "type" : "object",
@@ -298,23 +315,8 @@
                   "default" : true,
                   "description" : "Default: true"
                 },
-                "metadata" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
-                "data" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
-                "context" : {
-                  "type" : "object",
-                  "additionalProperties" : true,
-                  "properties" : { }
-                },
                 "maxAttempts" : {
-                  "type" : [ "number", "string" ],
+                  "type" : [ "number", "string", "integer" ],
                   "default" : -1,
                   "description" : "Default: -1"
                 },
@@ -329,7 +331,7 @@
                   "description" : "Default: 1M"
                 },
                 "multiplier" : {
-                  "type" : [ "number", "string" ],
+                  "type" : [ "number", "string", "integer" ],
                   "default" : 2,
                   "description" : "Default: 2"
                 },
@@ -339,19 +341,15 @@
                   "description" : "Default: 0.5"
                 },
                 "includes" : {
-                  "type" : [ "array", "string" ]
-                },
-                "excludes" : {
-                  "type" : [ "array", "string" ]
-                },
-                "transmute" : {
-                  "default" : null,
-                  "description" : "Default: null"
-                },
-                "transmutes" : {
                   "type" : [ "array", "string" ],
                   "items" : {
-                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
+                    "type" : "string"
+                  }
+                },
+                "excludes" : {
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "type" : "string"
                   }
                 }
               }
@@ -362,61 +360,8 @@
                 "jar" : {
                   "type" : "string",
                   "default" : "transmutes",
-                  "description" : "Default: transmutes"
-                },
-                "name" : {
-                  "type" : "string",
-                  "default" : "transmutes",
-                  "description" : "Default: transmutes"
-                },
-                "enabled" : {
-                  "type" : [ "boolean", "string" ],
-                  "default" : true,
-                  "description" : "Default: true"
-                },
-                "maxAttempts" : {
-                  "type" : [ "number", "string" ],
-                  "default" : -1,
-                  "description" : "Default: -1"
-                },
-                "minBackoff" : {
-                  "type" : "string",
-                  "default" : "10S",
-                  "description" : "Default: 10S"
-                },
-                "maxBackoff" : {
-                  "type" : "string",
-                  "default" : "1M",
-                  "description" : "Default: 1M"
-                },
-                "multiplier" : {
-                  "type" : [ "number", "string" ],
-                  "default" : 2,
-                  "description" : "Default: 2"
-                },
-                "jitter" : {
-                  "type" : [ "number", "string" ],
-                  "default" : 0.5,
-                  "description" : "Default: 0.5"
-                },
-                "includes" : {
-                  "type" : [ "array", "string" ]
-                },
-                "excludes" : {
-                  "type" : [ "array", "string" ]
-                },
-                "transmutes" : {
-                  "type" : [ "array", "string" ]
-                }
-              }
-            }, {
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "jar" : {
-                  "type" : "string",
-                  "default" : "transmutes",
-                  "description" : "Default: transmutes"
+                  "description" : "Default: transmutes",
+                  "const" : "transmutes"
                 },
                 "name" : {
                   "type" : "string",
@@ -429,12 +374,22 @@
                   "description" : "Default: true"
                 },
                 "transmutes" : {
-                  "type" : [ "array", "string" ]
+                  "type" : [ "array", "string" ],
+                  "items" : {
+                    "$ref" : "#/$defs/jars/properties/transmutejars/items"
+                  }
                 }
               }
             } ]
           }
         }
+      }
+    },
+    "transmutations" : {
+      "items" : {
+        "type" : "object",
+        "additionalProperties" : true,
+        "properties" : { }
       }
     }
   }

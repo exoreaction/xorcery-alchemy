@@ -134,14 +134,14 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml",
-                  "const" : "yaml"
+                  "default" : "json",
+                  "description" : "Default: json",
+                  "const" : "json"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "default" : "json",
+                  "description" : "Default: json"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
@@ -165,14 +165,14 @@
               "properties" : {
                 "jar" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml",
-                  "const" : "yaml"
+                  "default" : "json",
+                  "description" : "Default: json",
+                  "const" : "json"
                 },
                 "name" : {
                   "type" : "string",
-                  "default" : "yaml",
-                  "description" : "Default: yaml"
+                  "default" : "json",
+                  "description" : "Default: json"
                 },
                 "enabled" : {
                   "type" : [ "boolean", "string" ],
