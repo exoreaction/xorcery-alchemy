@@ -36,7 +36,6 @@ import javax.script.ScriptEngine;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.function.BiFunction;
 
 public class ScriptFlux
         implements Transmute {

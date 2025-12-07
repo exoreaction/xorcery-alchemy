@@ -26,7 +26,6 @@ import jakarta.inject.Inject;
 import org.jvnet.hk2.annotations.Service;
 import reactor.core.publisher.Flux;
 
-import java.util.List;
 import java.util.Optional;
 
 import static dev.xorcery.configuration.Configuration.missing;

@@ -21,7 +21,6 @@ import dev.xorcery.alchemy.jar.*;
 import dev.xorcery.configuration.ApplicationConfiguration;
 import dev.xorcery.configuration.Configuration;
 import dev.xorcery.metadata.Metadata;
-import dev.xorcery.reactivestreams.api.ContextViewElement;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import jakarta.inject.Inject;
 import org.apache.logging.log4j.LogManager;
@@ -29,9 +28,7 @@ import org.dhatim.fastexcel.VisibilityState;
 import org.dhatim.fastexcel.Workbook;
 import org.dhatim.fastexcel.Worksheet;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
-import reactor.util.context.ContextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +38,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @Service(name = "excel", metadata = "enabled=jars.enabled")

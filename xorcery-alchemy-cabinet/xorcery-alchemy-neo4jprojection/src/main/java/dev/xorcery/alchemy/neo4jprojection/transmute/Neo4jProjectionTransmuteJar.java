@@ -15,7 +15,6 @@
  */
 package dev.xorcery.alchemy.neo4jprojection.transmute;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -30,14 +29,10 @@ import dev.xorcery.neo4jprojections.api.Neo4jProjections;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import jakarta.inject.Inject;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
 import reactor.util.context.Context;
-import reactor.util.context.ContextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import static dev.xorcery.collections.Element.missing;
 import static dev.xorcery.neo4jprojections.api.ProjectionStreamContext.projectionId;

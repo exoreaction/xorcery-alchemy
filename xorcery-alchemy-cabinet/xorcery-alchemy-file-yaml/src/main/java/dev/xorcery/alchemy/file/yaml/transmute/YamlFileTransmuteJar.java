@@ -17,23 +17,18 @@ package dev.xorcery.alchemy.file.yaml.transmute;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import dev.xorcery.alchemy.jar.*;
-import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
-import reactor.util.context.ContextView;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
-import java.util.function.BiFunction;
 
 @Service(name = "yaml", metadata = "enabled=jars.enabled")
 public class YamlFileTransmuteJar

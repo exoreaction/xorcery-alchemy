@@ -27,14 +27,10 @@ import dev.xorcery.metadata.Metadata;
 import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import jakarta.inject.Inject;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
 import reactor.util.context.Context;
-import reactor.util.context.ContextView;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiFunction;
 
 @Service(name = "rename", metadata = "enabled=jars.enabled")
 public class RenameTransmuteJar

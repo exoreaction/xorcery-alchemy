@@ -15,19 +15,15 @@
  */
 package dev.xorcery.alchemy.common.transmute;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import dev.xorcery.alchemy.crucible.Transmutations;
-import dev.xorcery.alchemy.jar.*;
+import dev.xorcery.alchemy.jar.JarConfiguration;
+import dev.xorcery.alchemy.jar.TransmutationConfiguration;
+import dev.xorcery.alchemy.jar.Transmute;
+import dev.xorcery.alchemy.jar.TransmuteJar;
 import dev.xorcery.configuration.Configuration;
-import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import jakarta.inject.Inject;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
-import reactor.util.context.ContextView;
-
-import java.util.Optional;
-import java.util.function.BiFunction;
 
 import static dev.xorcery.configuration.Configuration.missing;
 

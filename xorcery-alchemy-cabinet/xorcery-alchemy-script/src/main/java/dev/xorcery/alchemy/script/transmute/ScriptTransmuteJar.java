@@ -16,20 +16,16 @@
 package dev.xorcery.alchemy.script.transmute;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.xorcery.alchemy.jar.*;
 import dev.xorcery.alchemy.script.ByteArrayOutputStreamWithoutNewLine;
 import dev.xorcery.alchemy.script.ScriptFlux;
 import dev.xorcery.alchemy.script.ServicesJSObject;
-import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import jakarta.inject.Inject;
 import org.apache.logging.log4j.spi.LoggerContext;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
-import reactor.util.context.ContextView;
 
 import javax.script.Bindings;
 import javax.script.ScriptContext;
@@ -39,7 +35,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.function.BiFunction;
 
 @Service(name = "script", metadata = "enabled=jars.enabled")
 public class ScriptTransmuteJar

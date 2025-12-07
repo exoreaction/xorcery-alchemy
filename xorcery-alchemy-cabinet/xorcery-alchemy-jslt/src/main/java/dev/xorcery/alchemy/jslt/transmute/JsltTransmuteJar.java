@@ -31,14 +31,11 @@ import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import jakarta.inject.Inject;
 import org.apache.logging.log4j.Logger;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.SynchronousSink;
-import reactor.util.context.ContextView;
 
 import java.util.*;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 
 @Service(name = "jslt", metadata = "enabled=jars.enabled")
 public class JsltTransmuteJar

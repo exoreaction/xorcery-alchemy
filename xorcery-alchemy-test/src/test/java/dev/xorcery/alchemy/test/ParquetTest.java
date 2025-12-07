@@ -18,7 +18,6 @@ package dev.xorcery.alchemy.test;
 import dev.xorcery.alchemy.crucible.TransmutationsRunner;
 import dev.xorcery.configuration.builder.ConfigurationBuilder;
 import dev.xorcery.core.Xorcery;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;

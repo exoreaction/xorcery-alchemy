@@ -27,11 +27,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.spi.LoggerContext;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
-import reactor.util.context.ContextView;
-
-import java.util.function.BiFunction;
 
 @Service(name="log", metadata = "enabled=jars.enabled")
 public class LogTransmuteJar

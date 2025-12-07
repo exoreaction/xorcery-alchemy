@@ -15,26 +15,20 @@
  */
 package dev.xorcery.alchemy.opensearch.transmute;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import dev.xorcery.alchemy.jar.*;
 import dev.xorcery.lang.Exceptions;
 import dev.xorcery.opensearch.OpenSearchService;
 import dev.xorcery.opensearch.client.search.Document;
 import dev.xorcery.opensearch.client.search.SearchRequest;
 import dev.xorcery.opensearch.client.search.SearchResponse;
-import dev.xorcery.reactivestreams.api.MetadataJsonNode;
 import dev.xorcery.util.UUIDs;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
 import org.jvnet.hk2.annotations.Service;
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
-import reactor.util.context.ContextView;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @Service(name="opensearch", metadata = "enabled=jars.enabled")
