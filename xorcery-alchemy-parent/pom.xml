@@ -39,7 +39,7 @@
 
         <xorcery.version>0.166.24</xorcery.version>
         <hk2.version>3.1.1</hk2.version>
-        <asm.version>9.9</asm.version>
+        <asm.version>9.9.1</asm.version>
         <jackson.version>2.20.1</jackson.version>
     </properties>
 
