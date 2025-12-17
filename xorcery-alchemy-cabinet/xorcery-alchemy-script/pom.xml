@@ -21,7 +21,7 @@
     <parent>
         <groupId>dev.xorcery.alchemy</groupId>
         <artifactId>xorcery-alchemy-cabinet</artifactId>
-        <version>0.5.5</version>
+        <version>0.5.6-SNAPSHOT</version>
     </parent>
 
     <artifactId>xorcery-alchemy-script</artifactId>
