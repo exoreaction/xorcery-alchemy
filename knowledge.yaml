@@ -1,0 +1,46 @@
+id: xorcery-alchemy
+name: "Xorcery Alchemy"
+version: "0.4.2-SNAPSHOT"
+description: "Modular data transformation and processing framework for Java that handles complex ETL pipelines via configurable transmutations, supporting CSV, Excel, YAML, Neo4j, OpenSearch, GraphQL domain events, and JSLT/JavaScript transformations."
+units:
+  - id: crucible
+    name: "Alchemy Crucible"
+    type: backend
+    description: "Main processing engine (the crucible) that orchestrates transmutation pipelines, executing configured sequences of input, transform, and output steps."
+    path: xorcery-alchemy-crucible/src/main/java/dev/xorcery/alchemy
+
+  - id: jar-core
+    name: "Alchemy JAR Core"
+    type: library
+    description: "Fundamental JAR handling and transformation infrastructure providing the base transmutation contract and lifecycle management."
+    path: xorcery-alchemy-jar/src/main/java/dev/xorcery/alchemy
+
+  - id: file-formats
+    name: "File Format Support"
+    type: library
+    description: "Input readers for CSV, Excel, and YAML file formats, enabling ETL pipelines to ingest data from common file types."
+    path: xorcery-alchemy-file-csv
+
+  - id: integrations
+    name: "Integration Modules"
+    type: backend
+    description: "Output integrations for Neo4j graph database projection, OpenSearch indexing, GraphQL domain event publishing, JSLT template transforms, and JavaScript-based transformations."
+    path: xorcery-alchemy-neo4jprojection
+
+  - id: common
+    name: "Common Utilities"
+    type: library
+    description: "Shared utilities, helper classes, and common functionality used across all Alchemy modules."
+    path: xorcery-alchemy-common/src/main/java/dev/xorcery/alchemy
+
+  - id: bom
+    name: "Bill of Materials"
+    type: config
+    description: "Maven BOM and parent POM for consistent dependency version management across all Alchemy modules targeting Java 21."
+    path: xorcery-alchemy-bom
+
+  - id: tests
+    name: "Integration Tests"
+    type: test
+    description: "Integration test suite validating end-to-end transmutation pipelines across all supported formats and integrations."
+    path: xorcery-alchemy-test/src/test/java/dev/xorcery/alchemy
