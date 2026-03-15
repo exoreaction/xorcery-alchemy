@@ -1,46 +1,66 @@
-id: xorcery-alchemy
-name: "Xorcery Alchemy"
-version: "0.4.2-SNAPSHOT"
-description: "Modular data transformation and processing framework for Java that handles complex ETL pipelines via configurable transmutations, supporting CSV, Excel, YAML, Neo4j, OpenSearch, GraphQL domain events, and JSLT/JavaScript transformations."
+kcp_version: "0.10"
+project: xorcery-alchemy
+version: 0.4.2-SNAPSHOT
+updated: "2026-03-15"
+language: en
+license: "Apache-2.0"
+indexing: private
+
 units:
+
   - id: crucible
-    name: "Alchemy Crucible"
-    type: backend
-    description: "Main processing engine (the crucible) that orchestrates transmutation pipelines, executing configured sequences of input, transform, and output steps."
-    path: xorcery-alchemy-crucible/src/main/java/dev/xorcery/alchemy
+    path: xorcery-alchemy-crucible
+    intent: "What is the Alchemy processing engine? The crucible orchestrates transmutation pipelines — executes configured sequences of input → transform → output steps. Start here to understand how an ETL pipeline is defined and run."
+    scope: global
+    audience: [developer, agent]
+    validated: "2026-03-15"
+    depends_on: [jar-core]
+    triggers: [crucible, ETL pipeline, transmutation, orchestration, pipeline execution, processing engine, input transform output]
 
   - id: jar-core
-    name: "Alchemy JAR Core"
-    type: library
-    description: "Fundamental JAR handling and transformation infrastructure providing the base transmutation contract and lifecycle management."
-    path: xorcery-alchemy-jar/src/main/java/dev/xorcery/alchemy
+    path: xorcery-alchemy-jar
+    intent: "What is the base transmutation contract? Core JAR handling and transformation infrastructure — the abstract transmutation lifecycle (open, transmute, close) that all concrete format modules implement."
+    scope: module
+    audience: [developer, agent]
+    validated: "2026-03-15"
+    triggers: [jar, transmutation, base contract, lifecycle, abstract, transmute, core infrastructure]
 
-  - id: file-formats
-    name: "File Format Support"
-    type: library
-    description: "Input readers for CSV, Excel, and YAML file formats, enabling ETL pipelines to ingest data from common file types."
-    path: xorcery-alchemy-file-csv
-
-  - id: integrations
-    name: "Integration Modules"
-    type: backend
-    description: "Output integrations for Neo4j graph database projection, OpenSearch indexing, GraphQL domain event publishing, JSLT template transforms, and JavaScript-based transformations."
-    path: xorcery-alchemy-neo4jprojection
-
-  - id: common
-    name: "Common Utilities"
-    type: library
-    description: "Shared utilities, helper classes, and common functionality used across all Alchemy modules."
-    path: xorcery-alchemy-common/src/main/java/dev/xorcery/alchemy
+  - id: cabinet
+    path: xorcery-alchemy-cabinet
+    intent: "What file formats and integration connectors does Alchemy support? The cabinet holds all concrete transmutation implementations — CSV, Excel, YAML readers, Neo4j projection, OpenSearch indexing, GraphQL event publishing, JSLT and JavaScript transforms."
+    scope: module
+    audience: [developer, agent]
+    validated: "2026-03-15"
+    depends_on: [jar-core]
+    triggers: [cabinet, CSV, Excel, YAML, Neo4j, OpenSearch, GraphQL, JSLT, JavaScript, connectors, file formats, integrations, readers, writers]
 
   - id: bom
-    name: "Bill of Materials"
-    type: config
-    description: "Maven BOM and parent POM for consistent dependency version management across all Alchemy modules targeting Java 21."
     path: xorcery-alchemy-bom
+    intent: "What are the Alchemy dependency versions? Maven BOM and parent POM — ensures consistent dependency versions across all Alchemy modules targeting Java 21."
+    scope: module
+    audience: [developer, agent]
+    validated: "2026-03-15"
+    triggers: [BOM, Maven, dependencies, versions, parent POM, Java 21, dependency management]
 
   - id: tests
-    name: "Integration Tests"
-    type: test
-    description: "Integration test suite validating end-to-end transmutation pipelines across all supported formats and integrations."
-    path: xorcery-alchemy-test/src/test/java/dev/xorcery/alchemy
+    path: xorcery-alchemy-test
+    intent: "How are Alchemy pipelines integration-tested? End-to-end test suite validating complete transmutation pipelines across all supported input formats and output integrations."
+    scope: module
+    audience: [developer, agent]
+    validated: "2026-03-15"
+    depends_on: [crucible, cabinet]
+    triggers: [test, integration test, pipeline test, end-to-end, validation, transmutation test]
+
+relationships:
+  - from: crucible
+    to: jar-core
+    type: depends_on
+  - from: cabinet
+    to: jar-core
+    type: depends_on
+  - from: tests
+    to: crucible
+    type: depends_on
+  - from: tests
+    to: cabinet
+    type: depends_on
