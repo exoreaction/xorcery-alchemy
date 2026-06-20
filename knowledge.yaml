@@ -1,10 +1,18 @@
-kcp_version: "0.12"
+kcp_version: "0.21"
 project: xorcery-alchemy
 version: 0.4.2-SNAPSHOT
-updated: "2026-03-19"
+updated: "2026-06-20"
+temporal:
+  valid_from: "2026-03-19"
+signing:
+  scheme: ed25519
+  scope: this-manifest
+  public_key: "MCowBQYDK2VwAyEAudBZ8a/Fjz0cwpWTV0fVrdQPYEUWxv2FruVfRw7acYQ="
+  signature: "https://raw.githubusercontent.com/exoreaction/xorcery-alchemy_WorkInProgress/main/knowledge.yaml.sig"
 language: en
 license: "Apache-2.0"
 indexing: private
+not_for: []
 
 units:
 
@@ -16,6 +24,9 @@ units:
     validated: "2026-03-15"
     depends_on: [jar-core]
     triggers: [crucible, ETL pipeline, transmutation, orchestration, pipeline execution, processing engine, input transform output]
+    content_hash:
+      algorithm: sha256
+      value: ""
 
   - id: jar-core
     path: xorcery-alchemy-jar
@@ -24,6 +35,9 @@ units:
     audience: [developer, agent]
     validated: "2026-03-15"
     triggers: [jar, transmutation, base contract, lifecycle, abstract, transmute, core infrastructure]
+    content_hash:
+      algorithm: sha256
+      value: ""
 
   - id: cabinet
     path: xorcery-alchemy-cabinet
@@ -33,6 +47,9 @@ units:
     validated: "2026-03-15"
     depends_on: [jar-core]
     triggers: [cabinet, CSV, Excel, YAML, Neo4j, OpenSearch, GraphQL, JSLT, JavaScript, connectors, file formats, integrations, readers, writers]
+    content_hash:
+      algorithm: sha256
+      value: ""
 
   - id: bom
     path: xorcery-alchemy-bom
@@ -41,6 +58,9 @@ units:
     audience: [developer, agent]
     validated: "2026-03-15"
     triggers: [BOM, Maven, dependencies, versions, parent POM, Java 21, dependency management]
+    content_hash:
+      algorithm: sha256
+      value: ""
 
   - id: tests
     path: xorcery-alchemy-test
@@ -50,6 +70,9 @@ units:
     validated: "2026-03-15"
     depends_on: [crucible, cabinet]
     triggers: [test, integration test, pipeline test, end-to-end, validation, transmutation test]
+    content_hash:
+      algorithm: sha256
+      value: ""
 
 relationships:
   - from: crucible
