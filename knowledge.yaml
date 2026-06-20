@@ -8,7 +8,8 @@ signing:
   scheme: ed25519
   scope: this-manifest
   public_key: "MCowBQYDK2VwAyEAudBZ8a/Fjz0cwpWTV0fVrdQPYEUWxv2FruVfRw7acYQ="
-  signature: "https://raw.githubusercontent.com/exoreaction/xorcery-alchemy_WorkInProgress/main/knowledge.yaml.sig"
+  signature: "https://raw.githubusercontent.com/exoreaction/xorcery-alchemy_WorkI\
+    nProgress/main/knowledge.yaml.sig"
 language: en
 license: "Apache-2.0"
 indexing: private
@@ -18,61 +19,124 @@ units:
 
   - id: crucible
     path: xorcery-alchemy-crucible
-    intent: "What is the Alchemy processing engine? The crucible orchestrates transmutation pipelines — executes configured sequences of input → transform → output steps. Start here to understand how an ETL pipeline is defined and run."
+    intent: "What is the Alchemy processing engine? The crucible orchestrates
+      transmutation pipelines — executes configured sequences of input →
+      transform → output steps. Start here to understand how an ETL pipeline is
+      defined and run."
     scope: global
-    audience: [developer, agent]
+    audience: [ developer, agent ]
     validated: "2026-03-15"
-    depends_on: [jar-core]
-    triggers: [crucible, ETL pipeline, transmutation, orchestration, pipeline execution, processing engine, input transform output]
+    depends_on: [ jar-core ]
+    triggers:
+      [
+        crucible,
+        ETL pipeline,
+        transmutation,
+        orchestration,
+        pipeline execution,
+        processing engine,
+        input transform output
+      ]
     content_hash:
       algorithm: sha256
-      value: ""
+      value: "c0b1bcefd92d9e7354c9fcf2a5547c3b418e4585622dadae3b68910ddb7230b5"
 
   - id: jar-core
     path: xorcery-alchemy-jar
-    intent: "What is the base transmutation contract? Core JAR handling and transformation infrastructure — the abstract transmutation lifecycle (open, transmute, close) that all concrete format modules implement."
+    intent: "What is the base transmutation contract? Core JAR handling and
+      transformation infrastructure — the abstract transmutation lifecycle
+      (open, transmute, close) that all concrete format modules implement."
     scope: module
-    audience: [developer, agent]
+    audience: [ developer, agent ]
     validated: "2026-03-15"
-    triggers: [jar, transmutation, base contract, lifecycle, abstract, transmute, core infrastructure]
+    triggers:
+      [
+        jar,
+        transmutation,
+        base contract,
+        lifecycle,
+        abstract,
+        transmute,
+        core infrastructure
+      ]
     content_hash:
       algorithm: sha256
-      value: ""
+      value: "28502193378c4ebef66aad576dda26f38e98385ee97590c30df81cd6f27a1f04"
 
   - id: cabinet
     path: xorcery-alchemy-cabinet
-    intent: "What file formats and integration connectors does Alchemy support? The cabinet holds all concrete transmutation implementations — CSV, Excel, YAML readers, Neo4j projection, OpenSearch indexing, GraphQL event publishing, JSLT and JavaScript transforms."
+    intent: "What file formats and integration connectors does Alchemy support? The
+      cabinet holds all concrete transmutation implementations — CSV, Excel,
+      YAML readers, Neo4j projection, OpenSearch indexing, GraphQL event
+      publishing, JSLT and JavaScript transforms."
     scope: module
-    audience: [developer, agent]
+    audience: [ developer, agent ]
     validated: "2026-03-15"
-    depends_on: [jar-core]
-    triggers: [cabinet, CSV, Excel, YAML, Neo4j, OpenSearch, GraphQL, JSLT, JavaScript, connectors, file formats, integrations, readers, writers]
+    depends_on: [ jar-core ]
+    triggers:
+      [
+        cabinet,
+        CSV,
+        Excel,
+        YAML,
+        Neo4j,
+        OpenSearch,
+        GraphQL,
+        JSLT,
+        JavaScript,
+        connectors,
+        file formats,
+        integrations,
+        readers,
+        writers
+      ]
     content_hash:
       algorithm: sha256
-      value: ""
+      value: "e722e2362b11641810bf61b4637fb30c659f4f4b10fe55d4df99d6a6bbb06719"
 
   - id: bom
     path: xorcery-alchemy-bom
-    intent: "What are the Alchemy dependency versions? Maven BOM and parent POM — ensures consistent dependency versions across all Alchemy modules targeting Java 21."
+    intent: "What are the Alchemy dependency versions? Maven BOM and parent POM —
+      ensures consistent dependency versions across all Alchemy modules
+      targeting Java 21."
     scope: module
-    audience: [developer, agent]
+    audience: [ developer, agent ]
     validated: "2026-03-15"
-    triggers: [BOM, Maven, dependencies, versions, parent POM, Java 21, dependency management]
+    triggers:
+      [
+        BOM,
+        Maven,
+        dependencies,
+        versions,
+        parent POM,
+        Java 21,
+        dependency management
+      ]
     content_hash:
       algorithm: sha256
-      value: ""
+      value: "4f27bbeb354be7e9f9f8307edfb0d4f79daa24a1521fa3f5322c3d5943f54b8f"
 
   - id: tests
     path: xorcery-alchemy-test
-    intent: "How are Alchemy pipelines integration-tested? End-to-end test suite validating complete transmutation pipelines across all supported input formats and output integrations."
+    intent: "How are Alchemy pipelines integration-tested? End-to-end test suite
+      validating complete transmutation pipelines across all supported input
+      formats and output integrations."
     scope: module
-    audience: [developer, agent]
+    audience: [ developer, agent ]
     validated: "2026-03-15"
-    depends_on: [crucible, cabinet]
-    triggers: [test, integration test, pipeline test, end-to-end, validation, transmutation test]
+    depends_on: [ crucible, cabinet ]
+    triggers:
+      [
+        test,
+        integration test,
+        pipeline test,
+        end-to-end,
+        validation,
+        transmutation test
+      ]
     content_hash:
       algorithm: sha256
-      value: ""
+      value: "900d6c565ca44c978d2963efebf8d1b9fe4d8ecf4a0c093f0e9b8304b0d89603"
 
 relationships:
   - from: crucible
